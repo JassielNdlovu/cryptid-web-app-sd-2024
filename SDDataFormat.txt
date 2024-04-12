@@ -1,0 +1,10 @@
+dormant fissure - bear habitat
+active fissure - cougar habitat
+bone - swamp
+
+count from top left
+
+mapcode - first 6 rep map tile + orientation(images for each tile + orientation saved)
+	- then white standing stone coords, green standing stone, blue standing stone, black standing stone
+	- then shacks in the same order
+first vertical, then horizontal (all in hex)
