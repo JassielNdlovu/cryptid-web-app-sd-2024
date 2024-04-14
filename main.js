@@ -9,6 +9,9 @@ function init() {
 }
 init();
 
+ctx.fillStyle = "gray";
+ctx.fillRect(20, 20, 150, 100);
+
 function drawHexagon(x, y) {
   ctx.beginPath();
   for (var i = 0; i < 6; i++) {
