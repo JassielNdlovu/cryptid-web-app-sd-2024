@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Blank template</title>
+        <title>Cryptid Board</title>
 
         <!-- Load external CSS styles -->
         <link rel="stylesheet" href="styles.css">
@@ -12,8 +12,195 @@
     </head>
 
     <body>
+        <dialog id="selectGameMode">
+            Select Game Mode for Random Map Generation
+            <section class="optButtons">
+                <button id="btnNormalMode", class="dlgBtn">
+                    Normal
+                </button>
+                <button id="btnAdvMode", class="dlgBtn">
+                    Advanced
+                </button>
+            </section>
+        </dialog>
+        <dialog id="selectHexItem">
+            Buildings
+            <section class="optButtons">
+                <button id="btnWhiteStone", class="dlgBtn">
+                    White Stone
+                </button>
+                <button id="btnWhiteShack", class="dlgBtn">
+                    White Shack
+                </button>   
+            </section>
+            <section class="optButtons">
+                <button id="btnBlueStone", class="dlgBtn">
+                    Blue Stone
+                </button>
+                <button id="btnBlueShack", class="dlgBtn">
+                    Blue Shack
+                </button>   
+            </section>
+            <section class="optButtons">
+                <button id="btnGreenStone", class="dlgBtn">
+                    Green Stone
+                </button>
+                <button id="btnGreenShack", class="dlgBtn">
+                    Green Shack
+                </button>   
+            </section>
+            <section class="optButtons">
+                <button id="btnBlackStone", class="dlgBtn">
+                    Black Stone
+                </button>
+                <button id="btnBlackShack", class="dlgBtn">
+                    Black Shack
+                </button>   
+            </section>
+            <section class="optButtons">
+                <button id="btnNoBuild", class="dlgBtn">
+                    No Building
+                </button>  
+            </section>
+            Tokens
+            <section class="optButtons">
+                <button id="btnP1Cube", class="dlgBtn">
+                    Player 1 Cube
+                </button>
+                <button id="btnP1Disk", class="dlgBtn">
+                    Player 1 Disk
+                </button>   
+            </section>
+            <section class="optButtons">
+                <button id="btnP2Cube", class="dlgBtn">
+                    Player 2 Cube
+                </button>
+                <button id="btnP2Disk", class="dlgBtn">
+                    Player 2 Disk
+                </button>   
+            </section>
+            <section class="optButtons">
+                <button id="btnP3Cube", class="dlgBtn">
+                    Player 3 Cube
+                </button>
+                <button id="btnP3Disk", class="dlgBtn">
+                    Player 3 Disk
+                </button>   
+            </section>
+            <section class="optButtons">
+                <button id="btnP4Cube", class="dlgBtn">
+                    Player 4 Cube
+                </button>
+                <button id="btnP4Disk", class="dlgBtn">
+                    Player 4 Disk
+                </button>   
+            </section>
+            <section class="optButtons">
+                <button id="btnP5Cube", class="dlgBtn">
+                    Player 5 Cube
+                </button>
+                <button id="btnP5Disk", class="dlgBtn">
+                    Player 5 Disk
+                </button>   
+            </section>
+            <section class="optButtons">
+                <button id="btnNoToken", class="dlgBtn">
+                    No Tokens
+                </button>  
+            </section>
+        </dialog>
+        <main>
+        <canvas id="board" width="1000px" height="550px"></canvas>
+        <canvas id="buildings" width="1000px" height="550px"></canvas>
+        <canvas id="tokens" width="1000px" height="550px"></canvas>
+        </main>
+        <section id="boardControls">
+            <button id="newBoard" onclick="genNewBoard()">New Random Board</button>
+            <section class="twoTileOptWrp">
+                <article class="tileOptions", id="tileOneOpt">
 
-        <canvas id="board" width="1000" height="1000"></canvas>
+                    <select name="tileOne", id="tileOne">
+                        <option selected="selected", value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    flipTileOne
+                    <input id="tileOneFlip", type="checkbox">
+                </article>
+                <article class="tileOptions", id="tileTwoOpt">
+
+                    <select name="tileOne", id="tileTwo">
+                        <option value="1">1</option>
+                        <option selected="selected", value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    flipTileTwo
+                    <input id="tileTwoFlip", type="checkbox">
+                </article>
+            </section>
+            <section class="twoTileOptWrp">
+                <article class="tileOptions", id="tileThreeOpt">
+
+                    <select name="tileThree", id="tileThree">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option selected="selected", value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    flipTileThree
+                    <input id="tileThreeFlip", type="checkbox">
+                </article>
+                <article class="tileOptions", id="tileFourOpt">
+
+                    <select name="tileFour", id="tileFour">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option selected="selected", value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    flipTileFour
+                    <input id="tileFourFlip", type="checkbox">
+                </article>
+            </section>
+            <section class="twoTileOptWrp">
+                <article class="tileOptions", id="tileFiveOpt">
+
+                    <select name="tileFive", id="tileFive">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option selected="selected", value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    flipTileFive
+                    <input id="tileFiveFlip", type="checkbox">
+                </article>
+                <article class="tileOptions", id="tileSixOpt">
+
+                    <select name="tileSix", id="tileSix">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option selected="selected", value="6">6</option>
+                    </select>
+                    flipTileSix
+                    <input id="tileSixFlip", type="checkbox">
+                </article>
+            </section>
+        </section>
         <script src="scripts.js"></script>
         
     </body>
