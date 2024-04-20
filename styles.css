@@ -1,0 +1,68 @@
+/* Place your CSS styles in this file */
+.cryptidGame{
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: fit-content;
+}
+#newBoard{
+  width: 200px;
+  height: 100px;
+}
+#boardControls{
+  margin-top:90%;
+}
+canvas{
+  position:absolute;
+  top:0;
+  left:0;
+}
+h1 {
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: normal;
+}
+article{
+  margin: 3%;  
+}
+.tileOptions{
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+  width: 50px;
+  padding-right: 15%;
+}
+section{
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 400px;
+}
+dialog[open]{
+  align-self: center;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.optButtons{
+  display: flex;
+  flex-direction: row;
+  width: inherit;
+  height: fit-content;  
+}
+.dlgBtn{
+  padding: 2%;
+  height: fit-content;
+  width: 200px;
+}
+.twoTileOptWrp{
+  flex-direction: row;  
+}
+.hexagon {
+   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  
+  background: #00c3d9;
+  width: 100px;
+  height: 100px;
+}
