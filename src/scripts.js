@@ -1721,9 +1721,9 @@ document.getElementById("btnFivePlayers").onclick = function(){
     document.getElementById("endGame").disabled = false;
     document.getElementById("endTurn").disabled = true;
     //document.getElementById("btnP4Disk").disabled = true;
-    document.getElementById("btnP5Disk").disabled = true;
+    document.getElementById("btnP5Disk").disabled = false;
     //document.getElementById("btnP4Cube").disabled = true;
-    document.getElementById("btnP5Cube").disabled = true;
+    document.getElementById("btnP5Cube").disabled = false;
 };
 //OnClick for Show P1 Rule to show Player 1's clue/rule
 document.getElementById("p1Rule").onclick = function(){
