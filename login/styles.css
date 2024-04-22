@@ -45,9 +45,9 @@ footer {
 }
 
 .btn-google-login {
-    background: none;
+    background-color: white;
     border-style: solid;
-    border-radius: 5px;
+    border-radius: 0px;
     border-color: rgb(228, 228, 228);
     padding: 0;
     display: flex;
@@ -61,6 +61,15 @@ footer {
     display: block;
 }
 
-.btn-google-text {
+.btn-google-login a {
     padding-right: 5px;
 }
+
+.btn-google-login 
+a:link,
+a:visited, 
+a:hover,
+a:active {
+    text-decoration: none;
+}
+
