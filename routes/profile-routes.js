@@ -5,7 +5,7 @@ const path = require('path'); // Import the path module
 // Middleware to check if user is authenticated
 const authCheck = (req, res, next) => {
     if (!req.user) {
-        res.redirect('/auth/login');
+        res.redirect('https://cryotid-web-sd.azurewebsites.net/.auth/login/google/callback'); 
     } else {
         next();
     }

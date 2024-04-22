@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const session = require('express-session');
 const passport = require('passport');
+const http = require('http');
+
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -44,6 +47,12 @@ app.get('/', (req, res) => {
 });
 
 // Start server
-app.listen(3000, () => {
-    console.log('App now listening for requests on port 3000');
+const server = http.createServer(app);
+
+server.listen(port, err => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(`Server listening on port ${port}`);
+    }
 });

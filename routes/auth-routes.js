@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const path = require('path'); // Import the path module to work with file paths
+const path = require('path');
 const passport = require('passport');
 
 // Render login.html
@@ -20,9 +20,8 @@ router.get('/profile', (req, res) => {
 // Logout
 router.get('/logout', (req, res) => {
     // Handle logout with Passport.js
-    req.logout(() => {
-        res.redirect('/');
-    });
+    req.logout(); // passport's logout method
+    res.redirect('http://cryotid-web-sd.azurewebsites.net/.auth/login'); // Redirect to login page after logout
 });
 
 // Google authentication
@@ -30,8 +29,9 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile']
 }));
 
+// Google authentication callback
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-    res.redirect('/auth/profile');
+    res.redirect('http://cryotid-web-sd.azurewebsites.net/auth/profile');
 });
 
 
