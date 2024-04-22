@@ -39,6 +39,7 @@ body, ul {
 .vertical-nav ul {
     list-style-type: none;
     padding: 10px;
+    font-size: 12px;
 }
 
 .vertical-nav a {

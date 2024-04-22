@@ -14,7 +14,7 @@ router.get('/styles.css', (req, res) => {
 
 // Serve profile.html
 router.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname, '../login/profile.html')); 
+    res.sendFile(path.join(__dirname, '../profile/profile.html')); 
 });
 
 // Logout
