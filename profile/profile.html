@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav-bar.css">
 
 </head>
 <body>
@@ -16,8 +17,8 @@
         </ul>
     </nav> -->
     <header>
-        <div class="menu">
-            <img src="../images/menu.svg" style="width: 25px;padding-right: 5px;">
+        <div class="menu" onclick="toggleNavBar()">
+            <img src="../images/menu.svg" style="width: 25px; padding-right: 5px;">
             <p><b>Home</b></p>
         </div>
         <h1>Welcome to your profile</h1>
@@ -29,31 +30,45 @@
                 <ul>
                     <li>
                         <a href="/" class="homepage">
-                            <img src="../images/home-icon.png" style="width: 12px;padding-right: 5px;">
-                            <p>Homepage</p>
+                            <img class="home-icon" src="../images/home.svg" style="width: 20px;padding-right: 10px;padding-left: 5px;">
+                            <p class="home-text">Home Page</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="../images/new-game.svg" style="width: 12px;padding-right: 5px;">
+                            <img src="../images/new-game.svg" style="width: 20px;padding-right:10px;padding-left: 5px;">
                             <p>New Game</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="../images/previous-games.svg" style="width: 15px;padding-right: 5px;">
+                            <img src="../images/previous-games.svg" style="width: 18px;padding-right: 10px;padding-left: 5px;">
                             <p>Previous Games</p>
                         </a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="/auth/logout">Log out</a></li>
+                    <li>
+                        <a href="#">
+                            <img src="../images/contact.svg" style="width: 18px;padding-right: 10px;padding-left: 5px;">
+                            <p>Contact Us</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/auth/logout">
+                            <img src="../images/log-out.svg" style="width: 18px;padding-right: 10px;padding-left: 5px;">
+                            <p>Log Out</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
         <!-- <canvas id="board" width="1000" height="1000"></canvas> -->
         <script src="cryptidBoard.js"></script>
     </main>
-    <footer>
-        <p style="color: rgb(245, 245, 245);">Cryptid Game 2024</p>
-    </footer>
+
+    <script>
+        function toggleNavBar() {
+            var navBar = document.querySelector('.vertical-nav');
+            navBar.classList.toggle('visible');
+        }
+    </script>
 </body>
 </html>

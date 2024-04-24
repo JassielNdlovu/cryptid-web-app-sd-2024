@@ -7,25 +7,17 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    background-color: rgb(245, 245, 245);
+    background-image: url('../images/login-landscape.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
     flex-direction: column;
-}
-
-footer {
-    position: sticky;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    background-color:  rgb(50, 50, 50);
-    align-items: center;
-    justify-content: center;
 }
 
 .main-body {
     flex: 1;
     width: 100%;
-    background-color: rgb(245, 245, 245);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,7 +29,7 @@ footer {
     border-width: 1px;
     border-radius: 10px;
     border-color: rgb(228, 228, 228);
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,6 +58,7 @@ footer {
 
 .btn-google-login a {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;
     padding-right: 15px;
 }
 
