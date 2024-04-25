@@ -12,6 +12,84 @@
     </head>
 
     <body>
+        <dialog id="takeTurn">
+            <p id="takeTurnText"> What would you like to do? </p>
+            <section class="optButtons">
+                <button id="takeTurnQuest"> Question </button>
+                <button id="takeTurnSearch"> Search </button>
+            </section>
+        </dialog>
+        <dialog id="questPlacePiece">
+            <p id="questPlacePieceText"> The Hex selected id highlighted. Your clue is the following: </p>
+            <button id="questPieceYes"> Yes </button>
+            <button id="questPieceNo"> No </button>
+        </dialog>
+        <dialog id="pickPlayer">
+            <p id="pickPlayerText"> Pick a player to question </p>
+            <section class="optButtons">
+                <button id="pickPlayer1"> Player 1 </button>
+                <button id="pickPlayer2"> Player 2 </button>
+                <button id="pickPlayer3"> Player 3 </button>
+                <button id="pickPlayer4"> Player 4 </button>
+                <button id="pickPlayer5"> Player 5 </button>
+            </section>
+        </dialog>
+        <dialog id="passTurn">
+            <p id="passTurnText"></p>
+            <button id="passTurnBtn"> OK </button>
+        </dialog>
+        <dialog id="passTurnSearch">
+            <p id="passTurnTextSearch"></p>
+            <button id="passTurnBtnSearch"> OK </button>
+        </dialog>
+        <dialog id="searchPlacePiece">
+            <p id="searchPlacePieceText"> The Hex selected id highlighted. Your clue is the following: </p>
+            <button id="searchPieceYes"> Yes </button>
+            <button id="searchPieceNo"> No </button>
+        </dialog>
+        <dialog id="resetConfirm">
+            Are you sure you want to reset the board?
+            <section class="optButtons">
+                <button id="resetYes"> Yes </button>
+                <button id="resetNo"> No </button>
+            </section>
+        </dialog>
+        <dialog id="endConfirm">
+            Are you sure you want to end the current game?
+            <section class="optButtons">
+                <button id="endYes"> Yes </button>
+                <button id="endNo"> No </button>
+            </section>
+        </dialog>
+        <dialog id="endGameBox">
+            <button id="endSolution", class="dlgBtn"> Show Solution </button>
+            <button id="endNoSolution", class="dlgBtn"> Don't Show Solution </button>   
+        </dialog>
+        <dialog id="hintBox">
+           <p id="hintBoxText"> Hint Loaded Here </p>
+            <button id="hintBoxOK", class="dlgBtn"> OK </button>
+        </dialog>
+        <dialog id="noGameLoaded">
+            No Game Board is loaded. Generate a random one now?
+            <button id="btnConfirmRandomNew", class="dlgBtn">
+                Yes
+            </button>
+            <button id="btnCancelNewGame", class="dlgBtn">
+                No
+            </button>
+        </dialog>
+        <dialog id="selectPlayerCount">
+            Select Number of Players
+            <button id="btnThreePlayers", class="dlgBtn">
+                Three (3)
+            </button>
+            <button id="btnFourPlayers", class="dlgBtn">
+                Four (4)
+            </button>
+            <button id="btnFivePlayers", class="dlgBtn">
+                Five (5)
+            </button>
+        </dialog>
         <dialog id="selectGameMode">
             Select Game Mode for Random Map Generation
             <section class="optButtons">
@@ -24,8 +102,9 @@
             </section>
         </dialog>
         <dialog id="selectHexItem">
+            <section id="hexBuildings">
             Buildings
-            <section class="optButtons">
+            <section id="whiteBuilds", class="optButtons">
                 <button id="btnWhiteStone", class="dlgBtn">
                     White Stone
                 </button>
@@ -33,7 +112,7 @@
                     White Shack
                 </button>   
             </section>
-            <section class="optButtons">
+            <section id="blueBuilds", class="optButtons">
                 <button id="btnBlueStone", class="dlgBtn">
                     Blue Stone
                 </button>
@@ -41,7 +120,7 @@
                     Blue Shack
                 </button>   
             </section>
-            <section class="optButtons">
+            <section id="greenBuilds", class="optButtons">
                 <button id="btnGreenStone", class="dlgBtn">
                     Green Stone
                 </button>
@@ -49,7 +128,7 @@
                     Green Shack
                 </button>   
             </section>
-            <section class="optButtons">
+            <section id="blackBuilds", class="optButtons">
                 <button id="btnBlackStone", class="dlgBtn">
                     Black Stone
                 </button>
@@ -57,13 +136,14 @@
                     Black Shack
                 </button>   
             </section>
-            <section class="optButtons">
+            <section id="noBuilds", class="optButtons">
                 <button id="btnNoBuild", class="dlgBtn">
                     No Building
                 </button>  
             </section>
+            </section>
             Tokens
-            <section class="optButtons">
+            <section id="p1Tokens", class="optButtons">
                 <button id="btnP1Cube", class="dlgBtn">
                     Player 1 Cube
                 </button>
@@ -71,7 +151,7 @@
                     Player 1 Disk
                 </button>   
             </section>
-            <section class="optButtons">
+            <section id="p2Tokens", class="optButtons">
                 <button id="btnP2Cube", class="dlgBtn">
                     Player 2 Cube
                 </button>
@@ -79,7 +159,7 @@
                     Player 2 Disk
                 </button>   
             </section>
-            <section class="optButtons">
+            <section id="p3Tokens", class="optButtons">
                 <button id="btnP3Cube", class="dlgBtn">
                     Player 3 Cube
                 </button>
@@ -87,7 +167,7 @@
                     Player 3 Disk
                 </button>   
             </section>
-            <section class="optButtons">
+            <section id="p4Tokens", class="optButtons">
                 <button id="btnP4Cube", class="dlgBtn">
                     Player 4 Cube
                 </button>
@@ -95,7 +175,7 @@
                     Player 4 Disk
                 </button>   
             </section>
-            <section class="optButtons">
+            <section id="p5Tokens", class="optButtons">
                 <button id="btnP5Cube", class="dlgBtn">
                     Player 5 Cube
                 </button>
@@ -106,7 +186,10 @@
             <section class="optButtons">
                 <button id="btnNoToken", class="dlgBtn">
                     No Tokens
-                </button>  
+                </button>
+                <button id="btnNoPlayerToken", class="dlgBtn">
+                    Remove Token
+                </button>   
             </section>
         </dialog>
         <main>
@@ -114,6 +197,9 @@
         <canvas id="buildings" width="1000px" height="550px"></canvas>
         <canvas id="tokens" width="1000px" height="550px"></canvas>
         </main>
+        <section id="gameInstructions">
+            <p id="gameInstructionsText">Game Instructions Go Here</p>
+        </section>
         <section id="boardControls">
             <button id="newBoard" onclick="genNewBoard()">New Random Board</button>
             <section class="twoTileOptWrp">
@@ -200,6 +286,35 @@
                     <input id="tileSixFlip", type="checkbox">
                 </article>
             </section>
+        </section>
+        <section id="gameControls">
+            <section id="gameButtonWrap">
+            <button id="newGame" onclick="genNewGame()">New Game</button>
+            <button id="startGame"> Start Game</button>
+            <button id="resetBoard"> Reset Board</button>
+            </section>
+            <section id="p1RuleBox", class="ruleBox">
+                <button disabled=true, id="p1Rule", class="btnRule">Show P1 Rule</button>
+                <p id="p1RuleText"></p>
+            </section>
+            <section id="p2RuleBox", class="ruleBox">
+                <button disabled=true, id="p2Rule", class="btnRule">Show P2 Rule</button>
+                <p id="p2RuleText"></p>
+            </section> 
+            <section id="p3RuleBox", class="ruleBox">
+                <button disabled=true, id="p3Rule", class="btnRule">Show P3 Rule</button>
+                <p id="p3RuleText"></p>
+            </section>
+            <section id="p4RuleBox", class="ruleBox">
+                <button disabled=true, id="p4Rule", class="btnRule">Show P4 Rule</button>
+                <p id="p4RuleText"></p>
+            </section>
+            <section id="p5RuleBox", class="ruleBox">
+                <button disabled=true, id="p5Rule", class="btnRule">Show P5 Rule</button>
+                <p id="p5RuleText"></p>
+            </section>
+            <button id="endTurn"> End Turn </button>
+            <button disabled=true, id="endGame"> End Current Game </button>      
         </section>
         <script src="scripts.js"></script>
         
