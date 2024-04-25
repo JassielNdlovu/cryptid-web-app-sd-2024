@@ -1,137 +1,323 @@
-/* Place your CSS styles in this file */
-.cryptidGame{
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-    width: fit-content;
-  }
-  .disabled {
-      pointer-events: none; /* Disables pointer events */
-      opacity: 0.5;
-  }
-  #hexBuildings{
-    height: fit-content;
-  }
-  #endGameBox{
-    height: fit-content;
-  }
-  #resetConfirm{
-    height: fit-content;
-    width: fit-content;    
-  }
-  #endConfirm{
-    height: fit-content;
-    width: fit-content;    
-  }
-  #passTurn{
-    height: fit-content;
-    width: fit-content;  
-  }
-  #startGame{
-    width: 200px;
-    height: fit-content;  
-  }
-  #takeTurn{
-    height: fit-content;
-    width: fit-content;   
-  }
-  #gameButtonWrap{
-    display: flex;
-    flex-direction: row;
-    height: fit-content;
-    width: fit-content;
-  }
-  #questPlacePiece{
-    margin-bottom: 20%;
-  }
-  .ruleBox{
-    display: flex;
-    flex-direction: row;
-    height: fit-content;
-    width: fit-content;
-  }
-  .btnRule{
-    height: fit-content;
-    width: fit-content;
-    margin: 2%;
-  }
-  main{
-    height: 600px;
-  }
-  input{
-    padding-right: 10%;
-  }
-  #hintBox{
-    height: fit-content;
-  }
-  #newBoard{
-    width: 200px;
-    height: fit-content;
-  }
-  #boardControls{
-    margin-top:5%;
-    width: fit-content;
-    height: fit-content;
-  }
-  #gameControls{
-     margin-top:5%;  
-  }
-  #newGame{
-    width: 200px;
-    height: fit-content;
-  }
-  canvas{
-    position:absolute;
-    top:0;
-    left:0;
-  }
-  h1 {
-      text-align: center;
-      font-family: "Source Sans Pro", sans-serif;
-      font-weight: normal;
-  }
-  article{
-    margin: 2%;  
-  }
-  .tileOptions{
-    display: flex;
-    flex-direction: row;
-    height: 20px;
-    width: fit-content;
-  }
-  section{
-    display: flex;
-    flex-direction: column;
-    height: 100px;
-    width: 400px;
-  }
-  dialog[open]{
-    align-self: center;
-    height: fit-content;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-  }
-  .optButtons{
-    display: flex;
-    flex-direction: row;
-    width: inherit;
-    height: fit-content;  
-  }
-  .dlgBtn{
-    padding: 2%;
-    height: fit-content;
-    width: 200px;
-  }
-  .twoTileOptWrp{
-    flex-direction: row;
-    height: fit-content;
-    width: fit-content;  
-  }
-  .hexagon {
-     clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-    
-    background: #00c3d9;
-    width: 100px;
-    height: 100px;
-  }
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Cryptid Board</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+        <dialog id="takeTurn">
+            <p id="takeTurnText"> What would you like to do? </p>
+            <section class="optButtons">
+                <button id="takeTurnQuest"> Question </button>
+                <button id="takeTurnSearch"> Search </button>
+            </section>
+        </dialog>
+        <dialog id="questPlacePiece">
+            <p id="questPlacePieceText"> The Hex selected id highlighted. Your clue is the following: </p>
+            <button id="questPieceYes"> Yes </button>
+            <button id="questPieceNo"> No </button>
+        </dialog>
+        <dialog id="pickPlayer">
+            <p id="pickPlayerText"> Pick a player to question </p>
+            <section class="optButtons">
+                <button id="pickPlayer1"> Player 1 </button>
+                <button id="pickPlayer2"> Player 2 </button>
+                <button id="pickPlayer3"> Player 3 </button>
+                <button id="pickPlayer4"> Player 4 </button>
+                <button id="pickPlayer5"> Player 5 </button>
+            </section>
+        </dialog>
+        <dialog id="passTurn">
+            <p id="passTurnText"></p>
+            <button id="passTurnBtn"> OK </button>
+        </dialog>
+        <dialog id="passTurnSearch">
+            <p id="passTurnTextSearch"></p>
+            <button id="passTurnBtnSearch"> OK </button>
+        </dialog>
+        <dialog id="searchPlacePiece">
+            <p id="searchPlacePieceText"> The Hex selected id highlighted. Your clue is the following: </p>
+            <button id="searchPieceYes"> Yes </button>
+            <button id="searchPieceNo"> No </button>
+        </dialog>
+        <dialog id="resetConfirm">
+            Are you sure you want to reset the board?
+            <section class="optButtons">
+                <button id="resetYes"> Yes </button>
+                <button id="resetNo"> No </button>
+            </section>
+        </dialog>
+        <dialog id="endConfirm">
+            Are you sure you want to end the current game?
+            <section class="optButtons">
+                <button id="endYes"> Yes </button>
+                <button id="endNo"> No </button>
+            </section>
+        </dialog>
+        <dialog id="endGameBox">
+            <button id="endSolution", class="dlgBtn"> Show Solution </button>
+            <button id="endNoSolution", class="dlgBtn"> Don't Show Solution </button>   
+        </dialog>
+        <dialog id="hintBox">
+           <p id="hintBoxText"> Hint Loaded Here </p>
+            <button id="hintBoxOK", class="dlgBtn"> OK </button>
+        </dialog>
+        <dialog id="noGameLoaded">
+            No Game Board is loaded. Generate a random one now?
+            <button id="btnConfirmRandomNew", class="dlgBtn">
+                Yes
+            </button>
+            <button id="btnCancelNewGame", class="dlgBtn">
+                No
+            </button>
+        </dialog>
+        <dialog id="selectPlayerCount">
+            Select Number of Players
+            <button id="btnThreePlayers", class="dlgBtn">
+                Three (3)
+            </button>
+            <button id="btnFourPlayers", class="dlgBtn">
+                Four (4)
+            </button>
+            <button id="btnFivePlayers", class="dlgBtn">
+                Five (5)
+            </button>
+        </dialog>
+        <dialog id="selectGameMode">
+            Select Game Mode for Random Map Generation
+            <section class="optButtons">
+                <button id="btnNormalMode", class="dlgBtn">
+                    Normal
+                </button>
+                <button id="btnAdvMode", class="dlgBtn">
+                    Advanced
+                </button>
+            </section>
+        </dialog>
+        <dialog id="selectHexItem">
+            <section id="hexBuildings">
+            Buildings
+            <section id="whiteBuilds", class="optButtons">
+                <button id="btnWhiteStone", class="dlgBtn">
+                    White Stone
+                </button>
+                <button id="btnWhiteShack", class="dlgBtn">
+                    White Shack
+                </button>   
+            </section>
+            <section id="blueBuilds", class="optButtons">
+                <button id="btnBlueStone", class="dlgBtn">
+                    Blue Stone
+                </button>
+                <button id="btnBlueShack", class="dlgBtn">
+                    Blue Shack
+                </button>   
+            </section>
+            <section id="greenBuilds", class="optButtons">
+                <button id="btnGreenStone", class="dlgBtn">
+                    Green Stone
+                </button>
+                <button id="btnGreenShack", class="dlgBtn">
+                    Green Shack
+                </button>   
+            </section>
+            <section id="blackBuilds", class="optButtons">
+                <button id="btnBlackStone", class="dlgBtn">
+                    Black Stone
+                </button>
+                <button id="btnBlackShack", class="dlgBtn">
+                    Black Shack
+                </button>   
+            </section>
+            <section id="noBuilds", class="optButtons">
+                <button id="btnNoBuild", class="dlgBtn">
+                    No Building
+                </button>  
+            </section>
+            </section>
+            Tokens
+            <section id="p1Tokens", class="optButtons">
+                <button id="btnP1Cube", class="dlgBtn">
+                    Player 1 Cube
+                </button>
+                <button id="btnP1Disk", class="dlgBtn">
+                    Player 1 Disk
+                </button>   
+            </section>
+            <section id="p2Tokens", class="optButtons">
+                <button id="btnP2Cube", class="dlgBtn">
+                    Player 2 Cube
+                </button>
+                <button id="btnP2Disk", class="dlgBtn">
+                    Player 2 Disk
+                </button>   
+            </section>
+            <section id="p3Tokens", class="optButtons">
+                <button id="btnP3Cube", class="dlgBtn">
+                    Player 3 Cube
+                </button>
+                <button id="btnP3Disk", class="dlgBtn">
+                    Player 3 Disk
+                </button>   
+            </section>
+            <section id="p4Tokens", class="optButtons">
+                <button id="btnP4Cube", class="dlgBtn">
+                    Player 4 Cube
+                </button>
+                <button id="btnP4Disk", class="dlgBtn">
+                    Player 4 Disk
+                </button>   
+            </section>
+            <section id="p5Tokens", class="optButtons">
+                <button id="btnP5Cube", class="dlgBtn">
+                    Player 5 Cube
+                </button>
+                <button id="btnP5Disk", class="dlgBtn">
+                    Player 5 Disk
+                </button>   
+            </section>
+            <section class="optButtons">
+                <button id="btnNoToken", class="dlgBtn">
+                    No Tokens
+                </button>
+                <button id="btnNoPlayerToken", class="dlgBtn">
+                    Remove Token
+                </button>   
+            </section>
+        </dialog>
+        <main>
+        <canvas id="board" width="1000px" height="550px"></canvas>
+        <canvas id="buildings" width="1000px" height="550px"></canvas>
+        <canvas id="tokens" width="1000px" height="550px"></canvas>
+        </main>
+        <section id="gameInstructions">
+            <p id="gameInstructionsText">Game Instructions Go Here</p>
+        </section>
+        <section id="boardControls">
+            <button id="newBoard" onclick="genNewBoard()">New Random Board</button>
+            <section class="twoTileOptWrp">
+                <article class="tileOptions", id="tileOneOpt">
+
+                    <select name="tileOne", id="tileOne">
+                        <option selected="selected", value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    flipTileOne
+                    <input id="tileOneFlip", type="checkbox">
+                </article>
+                <article class="tileOptions", id="tileTwoOpt">
+
+                    <select name="tileOne", id="tileTwo">
+                        <option value="1">1</option>
+                        <option selected="selected", value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    flipTileTwo
+                    <input id="tileTwoFlip", type="checkbox">
+                </article>
+            </section>
+            <section class="twoTileOptWrp">
+                <article class="tileOptions", id="tileThreeOpt">
+
+                    <select name="tileThree", id="tileThree">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option selected="selected", value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    flipTileThree
+                    <input id="tileThreeFlip", type="checkbox">
+                </article>
+                <article class="tileOptions", id="tileFourOpt">
+
+                    <select name="tileFour", id="tileFour">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option selected="selected", value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    flipTileFour
+                    <input id="tileFourFlip", type="checkbox">
+                </article>
+            </section>
+            <section class="twoTileOptWrp">
+                <article class="tileOptions", id="tileFiveOpt">
+
+                    <select name="tileFive", id="tileFive">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option selected="selected", value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    flipTileFive
+                    <input id="tileFiveFlip", type="checkbox">
+                </article>
+                <article class="tileOptions", id="tileSixOpt">
+
+                    <select name="tileSix", id="tileSix">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option selected="selected", value="6">6</option>
+                    </select>
+                    flipTileSix
+                    <input id="tileSixFlip", type="checkbox">
+                </article>
+            </section>
+        </section>
+        <section id="gameControls">
+            <section id="gameButtonWrap">
+            <button id="newGame" onclick="genNewGame()">New Game</button>
+            <button id="startGame"> Start Game</button>
+            <button id="resetBoard"> Reset Board</button>
+            </section>
+            <section id="p1RuleBox", class="ruleBox">
+                <button disabled=true, id="p1Rule", class="btnRule">Show P1 Rule</button>
+                <p id="p1RuleText"></p>
+            </section>
+            <section id="p2RuleBox", class="ruleBox">
+                <button disabled=true, id="p2Rule", class="btnRule">Show P2 Rule</button>
+                <p id="p2RuleText"></p>
+            </section> 
+            <section id="p3RuleBox", class="ruleBox">
+                <button disabled=true, id="p3Rule", class="btnRule">Show P3 Rule</button>
+                <p id="p3RuleText"></p>
+            </section>
+            <section id="p4RuleBox", class="ruleBox">
+                <button disabled=true, id="p4Rule", class="btnRule">Show P4 Rule</button>
+                <p id="p4RuleText"></p>
+            </section>
+            <section id="p5RuleBox", class="ruleBox">
+                <button disabled=true, id="p5Rule", class="btnRule">Show P5 Rule</button>
+                <p id="p5RuleText"></p>
+            </section>
+            <button id="endTurn"> End Turn </button>
+            <button disabled=true, id="endGame"> End Current Game </button>      
+        </section>
+        <script src="scripts.js"></script>
+        
+    </body>
+
+</html>
