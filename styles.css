@@ -1,68 +1,144 @@
 /* Place your CSS styles in this file */
 .cryptidGame{
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  width: fit-content;
-}
-#newBoard{
-  width: 200px;
-  height: 100px;
-}
-#boardControls{
-  margin-top:90%;
-}
-canvas{
-  position:absolute;
-  top:0;
-  left:0;
-}
-h1 {
-    text-align: center;
-    font-family: "Source Sans Pro", sans-serif;
-    font-weight: normal;
-}
-article{
-  margin: 3%;  
-}
-.tileOptions{
-  display: flex;
-  flex-direction: row;
-  height: 20px;
-  width: 50px;
-  padding-right: 15%;
-}
-section{
-  display: flex;
-  flex-direction: column;
-  height: 100px;
-  width: 400px;
-}
-dialog[open]{
-  align-self: center;
-  height: fit-content;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-}
-.optButtons{
-  display: flex;
-  flex-direction: row;
-  width: inherit;
-  height: fit-content;  
-}
-.dlgBtn{
-  padding: 2%;
-  height: fit-content;
-  width: 200px;
-}
-.twoTileOptWrp{
-  flex-direction: row;  
-}
-.hexagon {
-   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-  
-  background: #00c3d9;
-  width: 100px;
-  height: 100px;
-}
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: fit-content;
+  }
+  .disabled {
+      pointer-events: none; /* Disables pointer events */
+      opacity: 0.5;
+  }
+  #hexBuildings{
+    height: fit-content;
+  }
+  #endGameBox{
+    height: fit-content;
+  }
+  #resetConfirm{
+    height: fit-content;
+    width: fit-content;    
+  }
+  #endConfirm{
+    height: fit-content;
+    width: fit-content;    
+  }
+  #passTurn{
+    height: fit-content;
+    width: fit-content;  
+  }
+  #passTurnSearch{
+    height: fit-content;
+    width: fit-content;  
+  }
+  #startGame{
+    width: 200px;
+    height: fit-content;  
+  }
+  #takeTurn{
+    height: fit-content;
+    width: fit-content;   
+  }
+  #gameButtonWrap{
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width: fit-content;
+  }
+  #questPlacePiece{
+    margin-bottom: 20%;
+  }
+  #searchPlacePiece{
+    margin-bottom: 20%;
+  }
+  .ruleBox{
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width: fit-content;
+  }
+  .btnRule{
+    height: fit-content;
+    width: fit-content;
+    margin: 2%;
+  }
+  main{
+    height: 600px;
+  }
+  input{
+    padding-right: 10%;
+  }
+  #hintBox{
+    height: fit-content;
+  }
+  #newBoard{
+    width: 200px;
+    height: fit-content;
+  }
+  #boardControls{
+    margin-top:5%;
+    width: fit-content;
+    height: fit-content;
+  }
+  #gameControls{
+     margin-top:5%;  
+  }
+  #newGame{
+    width: 200px;
+    height: fit-content;
+  }
+  canvas{
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  h1 {
+      text-align: center;
+      font-family: "Source Sans Pro", sans-serif;
+      font-weight: normal;
+  }
+  article{
+    margin: 2%;  
+  }
+  .tileOptions{
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    width: fit-content;
+  }
+  section{
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 400px;
+  }
+  dialog[open]{
+    align-self: center;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+  }
+  .optButtons{
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+    height: fit-content;  
+  }
+  .dlgBtn{
+    padding: 2%;
+    height: fit-content;
+    width: 200px;
+  }
+  .twoTileOptWrp{
+    flex-direction: row;
+    height: fit-content;
+    width: fit-content;  
+  }
+  .hexagon {
+     clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+    
+    background: #00c3d9;
+    width: 100px;
+    height: 100px;
+  }
