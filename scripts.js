@@ -152,7 +152,7 @@ const rules = {
 
 var url = "https://www.playcryptid.com/php/getGame.php"; //base url for playcryptid.com
 var tempStr = "";
-//document.getElementById("selectGameMode").close();
+gameModeBox.close();
 genEmptyBoard();
 //generate basic empty board
 function genEmptyBoard(){
@@ -210,7 +210,6 @@ function genEmptyBoard(){
     document.getElementById("newBoard").disabled = false;
     document.getElementById("boardControls").classList.remove("disabled");
 }
-module.exports.genEmptyBoard = genEmptyBoard;
 //Generate New Random Board from playcryptid.com
 //input: game mode, either 0 for normal(intro on mapKey) or 1 for advanced (normal on mapKey)
 function genNewBoard(mode){
@@ -551,7 +550,6 @@ function drawTile(x, y, w, h, points,cols,habs) {
 
   }
 }
-module.exports.drawTile = drawTile;
 //draws entire grid
 function drawGrid(cols,habs){
     var colsTemp;
@@ -653,7 +651,6 @@ function gridToPixel(gx, gy, p = {}) {
     p.y = gy * GRID_Y_SPACE - (gx % 2 ? GRID_Y_OFFSET : 0);       
     return p;
 }
-module.exports.gridToPixel = gridToPixel;
 //draws polygon on canvas
 function drawPoly(p, points,layer) { // p.x, p.y is center
     var localCtx; //context for layer used
@@ -677,7 +674,6 @@ function drawPoly(p, points,layer) { // p.x, p.y is center
     localCtx.fill();
     localCtx.stroke();
 }
-module.exports.drawPoly = drawPoly;
 //creates polygon based on predetermined properties
 //input: sides- number of sides; rad- radius; layer- canvas layer to use
 function createPoly(sides,rad, points = [],layer) {
@@ -697,7 +693,6 @@ function createPoly(sides,rad, points = [],layer) {
     
     return points;
 };
-module.exports.createPoly = createPoly;
 //draw player tokens on canvas
 //input: sol- whether to draw the solution marker or not
 function drawTokens(sol){
@@ -1813,15 +1808,6 @@ document.getElementById("endNoSolution").onclick = function(){
     elements.forEach(function (hex) {
         hex.pieces = [];
     });
-    document.getElementById("p1RuleText").innerText = "";
-    document.getElementById("p2RuleText").innerText = "";
-    document.getElementById("p3RuleText").innerText = "";
-    if ((playerCount == 4)||(playerCount == 5)){
-        document.getElementById("p4RuleText").innerText = "";
-    }
-    if(playerCount == 5){
-        document.getElementById("p5RuleText").innerText = "";
-    }
     document.getElementById("p1Rule").disabled = true;
     document.getElementById("p2Rule").disabled = true;
     document.getElementById("p3Rule").disabled = true;
@@ -1893,11 +1879,6 @@ document.getElementById("startGame").onclick = function(){
 
     }
     currentGameRecord = newGameRecord;
-    document.getElementById("btnP1Disk").disabled = true;
-    document.getElementById("btnP2Disk").disabled = true;
-    document.getElementById("btnP3Disk").disabled = true;
-    document.getElementById("btnP4Disk").disabled = true;
-    document.getElementById("btnP5Disk").disabled = true;
     document.getElementById("newGame").disabled = true;
     document.getElementById("p1Rule").disabled = true;
     document.getElementById("p2Rule").disabled = true;
@@ -3005,8 +2986,6 @@ document.getElementById("takeTurnSearch").onclick = function(){
         break;
     }
     elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces.push(piece);
-    currentTokenUpdate = [];
-    currentTokenUpdate.push(piece);
     drawTokens(false);
     ctxTokens.fillStyle = "#ffffff00";
     ctxTokens.strokeStyle = "#6100fc";
@@ -3048,8 +3027,6 @@ document.getElementById("passTurnBtnSearch").onclick = function(){
             inGame = false;
             document.getElementById("hintBoxText").innerText = "Player " + currentPlayer + " found the cryptid.";
             document.getElementById("hintBox").showModal();
-            recordTurn(currentGameRecord,1,currentTurn,currentPlayer,"search",selectedElem,currentTokenUpdate);
-            console.log(currentGameRecord);
             currentPlayer = 0;
             document.getElementById("passTurnSearch").close();
         }
@@ -3073,7 +3050,6 @@ document.getElementById("passTurnBtnSearch").onclick = function(){
             break;
                     
     }
-    
     document.getElementById("searchPlacePieceText").innerText = "The Hex selected id highlighted. Your clue is the following: \n" + clue + "\n Is this a valid space according to your clue?"
     document.getElementById("searchPlacePiece").showModal();
     document.getElementById("passTurnSearch").close();
