@@ -1,0 +1,25 @@
+{
+  "name": "cryptid-web-app-sd-2024",
+  "version": "1.0.0",
+  "description": "Cryptid Board Game Web App repo for Software Design course",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "type": "module"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@testing-library/dom": "^10.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "babel-plugin-transform-html-import-to-string": "^2.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.24.4",
+    "babel-jest": "^29.7.0",
+    "ts-jest": "^29.1.2"
+  }
+}

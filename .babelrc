@@ -1,0 +1,8 @@
+{
+    "plugins": [
+      ["transform-html-import-to-string", {
+        "exportAsDefault": true
+      }]
+    ]
+  }
+  
