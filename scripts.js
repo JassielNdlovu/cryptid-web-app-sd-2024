@@ -77,6 +77,7 @@ var greenbuildcoords = [];
 var blackbuildcoords = [];
 const rndItem = arr => arr[Math.random() * arr.length | 0];
 var elements = []
+module.exports.elements = elements;
 var tileOrder = [1,2,3,4,5,6];
 var flip = [0,0,0,0,0,0];
 var currentBoard;
@@ -525,6 +526,7 @@ function createGridLayout(tileOrder,flip){
 //draws a single tile on canvas
 // input: x- start x-value; y- start y-value; w- width of tile; h- height of tile; points- points for polygon to draw, hexagons in this case; cols- colors for hexes; habs- animal habitat spaces
 function drawTile(x, y, w, h, points,cols,habs) {
+var elementsTemp = [];
   const p = P2();
   var gy, gx;
   var i = 0;
@@ -535,7 +537,7 @@ function drawTile(x, y, w, h, points,cols,habs) {
             ctxBoard.strokeStyle ="black"
           drawPoly(gridToPixel(gx, gy, p), points,"board");
           //drawPoly(gridToPixel(gx, gy, p), points,"buildings");
-          elements.push({
+          elementsTemp.push({
             id : [gx,gy],
             cx: p.x,
             cy: p.y,
@@ -544,12 +546,23 @@ function drawTile(x, y, w, h, points,cols,habs) {
             build: "",
             pieces: []
             });
+            elements.push({
+                id : [gx,gy],
+                cx: p.x,
+                cy: p.y,
+                color: cols[i],
+                hab: habs[i],
+                build: "",
+                pieces: []
+                });
         i = i+1;
           
       }
 
   }
+  return(elementsTemp);
 }
+module.exports.drawTile = drawTile;
 //draws entire grid
 function drawGrid(cols,habs){
     var colsTemp;
@@ -562,6 +575,7 @@ function drawGrid(cols,habs){
         drawTile(tileStartCoords[(i / 18) | 0][0],tileStartCoords[(i / 18) | 0][1],6, 3, createPoly(EDGES,RADIUS), colsTemp,habsTemp);
     }
 }
+module.exports.drawGrid = drawGrid;
 //draws habitats
 function drawHabs(points,habs){
     const p = P2(); 
@@ -585,6 +599,7 @@ function drawHabs(points,habs){
         }
     }          
 }
+module.exports.drawHabs = drawHabs;
 //draws a building
 //input: coords- coordinate array for buildings; color- color of building; shape- shape of building, 8 for standing stone, 3 for shack
 function drawBuild(coords,color,shape){
@@ -635,6 +650,7 @@ function drawBuild(coords,color,shape){
     //ctxBoard.drawImage(buildingsBoard, 0, 0, 1000, 600); 
     } 
 }
+module.exports.drawBuild = drawBuild;
 //draws both buildings of one color
 function drawBuildings(coords,color){
     //check if building coords have been set
@@ -645,12 +661,14 @@ function drawBuildings(coords,color){
     
 
 }
+module.exports.drawBuildings = drawBuildings;
 //convert grid coords to pixel position on screen
 function gridToPixel(gx, gy, p = {}) {
     p.x = ((gx) * GRID_X_SPACE);
     p.y = gy * GRID_Y_SPACE - (gx % 2 ? GRID_Y_OFFSET : 0);       
     return p;
 }
+module.exports.gridToPixel = gridToPixel;
 //draws polygon on canvas
 function drawPoly(p, points,layer) { // p.x, p.y is center
     var localCtx; //context for layer used
@@ -674,6 +692,7 @@ function drawPoly(p, points,layer) { // p.x, p.y is center
     localCtx.fill();
     localCtx.stroke();
 }
+module.exports.drawPoly = drawPoly;
 //creates polygon based on predetermined properties
 //input: sides- number of sides; rad- radius; layer- canvas layer to use
 function createPoly(sides,rad, points = [],layer) {

@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`drawPoly drawPoly_hexCenteredOn11_canvasAt11ColoredBlackOnBoard 1`] = `
+Array [
+  Object {
+    "props": Object {
+      "value": "#ffffff",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "fillStyle",
+  },
+  Object {
+    "props": Object {
+      "value": 1,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "lineWidth",
+  },
+  Object {
+    "props": Object {
+      "value": "#000000",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "strokeStyle",
+  },
+]
+`;
+
+exports[`drawPoly drawPoly_hexCenteredOn11_canvasAt11ColoredBlueOnBoard 1`] = `
+Array [
+  Object {
+    "props": Object {
+      "value": "rgba(0, 195, 217, 0.75)",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "fillStyle",
+  },
+  Object {
+    "props": Object {
+      "value": 1,
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "lineWidth",
+  },
+  Object {
+    "props": Object {
+      "value": "#000000",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "strokeStyle",
+  },
+]
+`;
+
+exports[`drawTile drawTile_tile1CenteredOn11_canvasAt11ColorEqualToWater 1`] = `Array []`;
+
+exports[`drawTile drawTile_tile1CenteredOn11_canvasAt42ColorEqualToDesert 1`] = `Array []`;
