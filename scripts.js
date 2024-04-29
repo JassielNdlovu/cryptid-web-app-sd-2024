@@ -693,6 +693,7 @@ function createPoly(sides,rad, points = [],layer) {
     
     return points;
 };
+module.exports.createPoly = createPoly;
 //draw player tokens on canvas
 //input: sol- whether to draw the solution marker or not
 function drawTokens(sol){

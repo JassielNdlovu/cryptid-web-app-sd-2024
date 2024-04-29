@@ -1,6 +1,6 @@
-import {screen,render} from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
-import html from './index.html';
+//import {screen,render} from '@testing-library/dom';
+//import userEvent from '@testing-library/user-event';
+
 //document.body.innerHTML = html;
 //let board = document.getElementById('board');
 //let buildingsBoard = document.getElementById('buildings');
@@ -9,11 +9,15 @@ import html from './index.html';
 //const ctxBoard = board.getContext('2d');
 //const ctxBuild = buildings.getContext('2d');
 //const ctxTokens = tokens.getContext('2d');
+import html from './index.html';
 beforeEach(() => {
     // Set up the DOM here
+    
     document.body.innerHTML = html;
-    const board = document.getElementById('board');
-    const ctxBoard = board.getContext('2d');
+    HTMLDialogElement.prototype.show = jest.fn();
+    HTMLDialogElement.prototype.showModal = jest.fn();
+    HTMLDialogElement.prototype.close = jest.fn();
+    
 
   });
 
@@ -23,8 +27,11 @@ test('testJestSetup', ()=> {
   })
 
   test('createPoly_sixSides_outputContainsSixElements', ()=> {
-    const scripts = require('./scripts')
-    //const TAU = 2 * Math.PI;
-    //const RADIUS = 30;
+    const board = document.getElementById('board');
+    const ctxBoard = board.getContext('2d');
+    const TAU = 2 * Math.PI;
+    const RADIUS = 30;
+    const scripts = require('./scripts');
+    
     expect(scripts.createPoly(6,RADIUS).length).toBe(6);
-  })  
+  })
