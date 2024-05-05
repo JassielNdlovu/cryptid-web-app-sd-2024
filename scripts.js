@@ -1,34 +1,59 @@
 /* Place your JavaScript in this file */
 //var domContext
 let board = document.getElementById('board');
+module.exports.board = board;
 let buildingsBoard = document.getElementById('buildings');
+module.exports.buildingsBoard = buildingsBoard;
 let tokenBoard = document.getElementById('tokens');
+module.exports.tokenBoard = tokenBoard;
 //var buildingsBoard = document.createElement('canvas');
 const ctxBoard = board.getContext('2d');
+module.exports.ctxBoard = ctxBoard;
 const ctxBuild = buildings.getContext('2d');
+module.exports.ctxBuild = ctxBuild
 const ctxTokens = tokens.getContext('2d');
+module.exports.ctxTokens = ctxTokens;
 //ctxBoard.drawImage(buildingsBoard, 0, 0, 200, 200);
 const selectPlayerCount = document.getElementById("selectPlayerCount");
+module.exports.selectPlayerCount = selectPlayerCount;
 const noGameLoaded = document.getElementById("noGameLoaded");
+module.exports.noGameLoaded = noGameLoaded;
 const P2 = (x, y) => ({x,y});
+module.exports.P2 = P2;
 const EDGES = 6;
+module.exports.EDGES = EDGES;
 const RADIUS = 30;
+module.exports.RADIUS = RADIUS;
 const TAU = 2 * Math.PI;
+module.exports.TAU = TAU;
 const EDGE_LEN = Math.sin(Math.PI / EDGES) * RADIUS * 2;
+module.exports.EDGE_LEN = EDGE_LEN;
 const GRID_Y_SPACE = Math.cos(Math.PI / EDGES) * RADIUS * 2;
+module.exports.GRID_Y_SPACE = GRID_Y_SPACE;
 const GRID_X_SPACE = RADIUS * 2 - EDGE_LEN * 0.5;
+module.exports.GRID_X_SPACE = GRID_X_SPACE;
 const GRID_Y_OFFSET = GRID_Y_SPACE * 0.5;
+module.exports.GRID_Y_OFFSET = GRID_Y_OFFSET;
 const xOffset = 90;
 const yOffset = 51.96152422706632;
 const water = "#00c3d9bf";
+module.exports.water = water;
 const forest = "#36ba38bf";
+module.exports.forest = forest;
 const swamp = "#422282bf";
+module.exports.swamp = swamp;
 const desert = "#dbc13dbf";
+module.exports.desert = desert;
 const mount = "#8f8f8fbf";
+module.exports.mount = mount;
 const whitebuild = "#ffffff";
+module.exports.whitebuild = whitebuild;
 const bluebuild = "#0008fc";
+module.exports.bluebuild = bluebuild;
 const greenbuild = "#004721";
+module.exports.greenbuild = greenbuild;
 const blackbuild = "#000000";
+module.exports.blackbuild = blackbuild;
 const p1color = "#f7747b";
 const p2color = "#5b754c";
 const p3color = "#b1dcf2";
@@ -40,20 +65,55 @@ const p3YOffset = 0.00;
 const p4YOffset = -0.20;
 const p5YOffset = -0.40;
 var colors = [];
+function getColors(){
+    return colors;
+}
+function setColors(setCol){
+    colors = setCol;
+}
+module.exports.colors = colors;
+module.exports.getColors = getColors;
+module.exports.setColors = setColors;
 var habs = [];
+function getHabs(){
+    return habs;
+}
+function setHabs(testHabs){
+    habs = testHabs;
+}
+module.exports.habs = habs;
+module.exports.getHabs = getHabs;
+module.exports.setHabs = setHabs;
 //const COLS = "=#00c3d9,#01335f,#3f0e77,#204a73,#511d94,#fe1f00,#0060fd,#fe7603,#f0ca1d,#b085e8,#e9cafa".split(",");
 const cols1 = [water, water, water, water, forest, forest, swamp, swamp, water, desert, forest, forest, swamp, swamp, desert, desert, desert, forest];
+module.exports.cols1 = cols1;
 const habs1 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1]
+module.exports.habs1 = habs1;
 const cols2 = [swamp,forest,forest,forest,forest,forest,swamp,swamp,forest,desert,desert,desert,swamp,mount,mount,mount,mount,desert];
+module.exports.cols2 = cols2;
 const habs2 = [2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+module.exports.habs2 = habs2;
 const cols3 = [swamp,swamp,forest,forest,forest,water,swamp,swamp,forest,mount,water,water,mount,mount,mount,mount,water,water];
+module.exports.cols3 = cols3;
 const habs3 = [0,0,0,0,0,0,2,2,0,0,0,0,2,0,0,0,0,0]
+
+module.exports.habs3 = habs3;
 const cols4 = [desert,desert,mount,mount,mount,mount,desert,desert,mount,water,water,water,desert,desert,desert,forest,forest,forest];
+module.exports.cols4 = cols4;
 const habs4 = [0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2]
+
+module.exports.habs4 = habs4;
 const cols5 = [swamp,swamp,swamp,mount,mount,mount,swamp,desert,desert,water,mount,mount,desert,desert,water,water,water,water];
+module.exports.cols5 = cols5;
 const habs5 = [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1]
+
+module.exports.habs5 = habs5;
 const cols6 = [desert,desert,swamp,swamp,swamp,forest,mount,mount,swamp,swamp,forest,forest,mount,water,water,water,water,forest];
+module.exports.cols6 = cols6;
 const habs6 = [1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]
+
+module.exports.habs6 = habs6;
 const tileOneSelector = document.getElementById("tileOne");
 const tileTwoSelector = document.getElementById("tileTwo");
 const tileThreeSelector = document.getElementById("tileThree");
@@ -72,14 +132,74 @@ const selectHexItem = document.getElementById("selectHexItem");
 //column then row
 let jsonSetup = "";
 var whitebuildcoords = [];
+module.exports.whitebuildcoords = whitebuildcoords;
+function getWhiteCoords(){
+    return whitebuildcoords;
+}
+module.exports.getWhiteCoords = getWhiteCoords;
+function setWhiteCoords(testCoords){
+    whitebuildcoords = testCoords;
+}
+module.exports.setWhiteCoords = setWhiteCoords;
 var bluebuildcoords = [];
+module.exports.bluebuildcoords = bluebuildcoords;
+function getBlueCoords(){
+    return bluebuildcoords;
+}
+module.exports.getBlueCoords = getBlueCoords;
+function setBlueCoords(testCoords){
+    bluebuildcoords = testCoords;
+}
+module.exports.setBlueCoords = setBlueCoords;
 var greenbuildcoords = [];
+module.exports.greenbuildcoords = greenbuildcoords;
+function getGreenCoords(){
+    return greenbuildcoords;
+}
+module.exports.getGreenCoords = getGreenCoords;
+function setGreenCoords(testCoords){
+    greenbuildcoords = testCoords;
+}
+module.exports.setGreenCoords = setGreenCoords;
 var blackbuildcoords = [];
+module.exports.blackbuildcoords = blackbuildcoords;
+function getBlackCoords(){
+    return blackbuildcoords;
+}
+module.exports.getBlackCoords = getBlackCoords;
+function setBlackCoords(testCoords){
+    blackbuildcoords = testCoords;
+}
+module.exports.setBlackCoords = setBlackCoords;
 const rndItem = arr => arr[Math.random() * arr.length | 0];
 var elements = []
 module.exports.elements = elements;
+function getElements(){
+    return elements;
+}
+function setElements(testElements){
+    elements = testElements;
+}
+module.exports.getElements = getElements;
+module.exports.setElements = setElements;
 var tileOrder = [1,2,3,4,5,6];
+function setTileOrder(testTileOrder){
+    tileOrder = testTileOrder;
+}
+function getTileOrder(){
+    return tileOrder;
+}
 var flip = [0,0,0,0,0,0];
+function setFlip(testFlip){
+    flip = testFlip;
+}
+function getFlip(){
+    return flip;
+}
+module.exports.setFlip = setFlip;
+module.exports.setTileOrder = setTileOrder;
+module.exports.getFlip = getFlip;
+module.exports.getTileOrder = getTileOrder;
 var currentBoard;
 var gameMode = 0;
 var mapCode = "";
@@ -264,7 +384,8 @@ fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`, {cache: "
                 
 });
 }
-
+module.exports.genNewBoard = genNewBoard;
+module.exports.genEmptyBoard = genEmptyBoard;
 
 
 
@@ -441,19 +562,26 @@ if (gameMode == 1){
 document.getElementById("newBoard").disabled = false;
 document.getElementById("boardControls").classList.remove("disabled");
 }
+module.exports.drawBoard = drawBoard;
+module.exports.colors = colors
 //translate arrays saving board layout to something the rendering function uses
 //input: tileOrder-array saving order of tiles; flip-array saving orientation of tiles
 function createGridLayout(tileOrder,flip){
+    colors = [];
+    habs = [];
     for(var i =0; i<tileOrder.length;i++){
         console.log(tileOrder[i]);
         console.log(flip[i]);
         switch(tileOrder[i]) {
         case 1:
             if (flip[i]){
+                console.log(cols1)
                 tempArr = cols1.slice().reverse();
+                console.log(tempArr)
                 colors = colors.concat(tempArr);
                 tempArr = habs1.slice().reverse();
                 habs = habs.concat(tempArr);
+                console.log(colors)
             }
             else{
                 colors = colors.concat(cols1);
@@ -520,44 +648,49 @@ function createGridLayout(tileOrder,flip){
                 habs = habs.concat(habs6);   
             }
             break;
-}}
     
 }
+//console.log(colors)
+}
+    
+}
+module.exports.colorsAfter = colors
+module.exports.createGridLayout = createGridLayout;
 //draws a single tile on canvas
 // input: x- start x-value; y- start y-value; w- width of tile; h- height of tile; points- points for polygon to draw, hexagons in this case; cols- colors for hexes; habs- animal habitat spaces
-function drawTile(x, y, w, h, points,cols,habs) {
+function drawTile(x, y, w, h, points,colsTile,habsTile) {
 var elementsTemp = [];
+//console.log(colsTile)
   const p = P2();
   var gy, gx;
-  var i = 0;
+  var i = -1;
   for (gy = y; gy < y + h; gy++) {
       for (gx = x; gx < x + w; gx++) {
-          ctxBoard.fillStyle = cols[i];
-          ctxBoard.lineWidth = 1;
-            ctxBoard.strokeStyle ="black"
-          drawPoly(gridToPixel(gx, gy, p), points,"board");
-          //drawPoly(gridToPixel(gx, gy, p), points,"buildings");
-          elementsTemp.push({
+        i = i+1;
+        ctxBoard.fillStyle = colsTile[i];
+        ctxBoard.lineWidth = 1;
+        ctxBoard.strokeStyle ="black"
+        drawPoly(gridToPixel(gx, gy, p), points,"board");
+        //drawPoly(gridToPixel(gx, gy, p), points,"buildings");
+        const tempColor = colsTile[i];
+        const tempHab = habsTile[i];
+        //console.log(habsTile[i])
+        const tempObj = {
             id : [gx,gy],
             cx: p.x,
             cy: p.y,
-            color: cols[i],
-            hab: habs[i],
+            color: tempColor,
+            hab: tempHab,
             build: "",
             pieces: []
-            });
-            elements.push({
-                id : [gx,gy],
-                cx: p.x,
-                cy: p.y,
-                color: cols[i],
-                hab: habs[i],
-                build: "",
-                pieces: []
-                });
-        i = i+1;
+        }
+        elementsTemp.push(tempObj);
+        //console.log(tempColor)
+        elements.push(tempObj);
+       // console.log(elements[i]);
+        
           
-      }
+    }
 
   }
   return(elementsTemp);
@@ -570,8 +703,11 @@ function drawGrid(cols,habs){
     const tileStartCoords = [[1,1],[7,1],[1,4],[7,4],[1,7],[7,7]];
     for(var i=0;i<cols.length;i=i+18){
         colsTemp = cols.slice(i,i+18);
-        console.log(i);
+        //console.log(i)
+        //console.log(colsTemp);
         habsTemp = habs.slice(i,i+18);
+        //console.log(i);
+        //console.log(habsTemp);
         drawTile(tileStartCoords[(i / 18) | 0][0],tileStartCoords[(i / 18) | 0][1],6, 3, createPoly(EDGES,RADIUS), colsTemp,habsTemp);
     }
 }
@@ -658,6 +794,7 @@ function drawBuildings(coords,color){
         drawBuild(coords[0],color,8);
         drawBuild(coords[1],color,3);
     }
+    //else if ((coords[0] == 0) && (coords[1] == 0))
     
 
 }
@@ -828,6 +965,7 @@ function drawTokens(sol){
         }
     });    
 }
+module.exports.drawTokens = drawTokens;
 var elem = document.getElementById('board')
 var elemLeft = elem.offsetLeft + elem.clientLeft
 var elemTop = elem.offsetTop + elem.clientTop
@@ -841,6 +979,14 @@ function inside_circle(x, y, cx, cy, r) {
     return dx*dx + dy*dy <= r*r
 }
 var selectedElem; // saves coords of hex selected
+function getSelectedElem(){
+    return selectedElem;
+}
+function setSelectedElem(testSelectedElem){
+    selectedElem = testSelectedElem;
+}
+module.exports.getSelectedElem = getSelectedElem;
+module.exports.setSelectedElem = setSelectedElem;
 //checks if the top canvas layer was clicked
 tokens.addEventListener('click', function(event) {
     var x = event.pageX;
@@ -865,145 +1011,9 @@ tokens.addEventListener('click', function(event) {
     });
 
 }, false);
-//OnClick for button on popup menu to put the white stading stone on selected hex
-document.getElementById("btnWhiteStone").onclick = function() {
-    for (i in elements) {
-        i.build = "";
-    }
-    whitebuildcoords[0] = selectedElem;
-    elements.find(x => ((x.id[0] == whitebuildcoords[0][0]) &&  (x.id[1] == whitebuildcoords[0][1]))).build = "wt";
-    ctxBuild.setTransform(1,0,0,1,0,0);
-    ctxBuild.clearRect(0, 0,
-                buildingsBoard.width, buildingsBoard.height);
-    drawBuildings(whitebuildcoords,whitebuild);
-    drawBuildings(greenbuildcoords,greenbuild);
-    drawBuildings(bluebuildcoords,bluebuild);
-    drawBuildings(blackbuildcoords,blackbuild);
-    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
-    selectHexItem.close();
-};
-//OnClick for button on popup menu to put the white shack on selected hex
-document.getElementById("btnWhiteShack").onclick = function() {
-    for (i in elements) {
-        i.build = "";
-    }
-    whitebuildcoords[1] = selectedElem;
-    elements.find(x => ((x.id[0] == whitebuildcoords[1][0]) &&  (x.id[1] == whitebuildcoords[1][1]))).build = "ws";
-    ctxBuild.setTransform(1,0,0,1,0,0);
-    ctxBuild.clearRect(0, 0,
-                buildingsBoard.width, buildingsBoard.height);
-    drawBuildings(whitebuildcoords,whitebuild);
-    drawBuildings(greenbuildcoords,greenbuild);
-    drawBuildings(bluebuildcoords,bluebuild);
-    drawBuildings(blackbuildcoords,blackbuild);
-    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
-    selectHexItem.close();
-};
-//OnClick for button on popup menu to put the green stading stone on selected hex
-document.getElementById("btnGreenStone").onclick = function() {
-    for (i in elements) {
-        i.build = "";
-    }
-    greenbuildcoords[0] = selectedElem;
-    elements.find(x => ((x.id[0] == greenbuildcoords[0][0]) &&  (x.id[1] == greenbuildcoords[0][1]))).build = "gt";
-    ctxBuild.setTransform(1,0,0,1,0,0);
-    ctxBuild.clearRect(0, 0,
-                buildingsBoard.width, buildingsBoard.height);
-    drawBuildings(whitebuildcoords,whitebuild);
-    drawBuildings(greenbuildcoords,greenbuild);
-    drawBuildings(bluebuildcoords,bluebuild);
-    drawBuildings(blackbuildcoords,blackbuild);
-    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
-    selectHexItem.close();
-};
-//OnClick for button on popup menu to put the green shack on selected hex
-document.getElementById("btnGreenShack").onclick = function() {
-    for (i in elements) {
-        i.build = "";
-    }
-    greenbuildcoords[1] = selectedElem;
-    elements.find(x => ((x.id[0] == greenbuildcoords[1][0]) &&  (x.id[1] == greenbuildcoords[1][1]))).build = "gs";
-    ctxBuild.setTransform(1,0,0,1,0,0);
-    ctxBuild.clearRect(0, 0,
-                buildingsBoard.width, buildingsBoard.height);
-    drawBuildings(whitebuildcoords,whitebuild);
-    drawBuildings(greenbuildcoords,greenbuild);
-    drawBuildings(bluebuildcoords,bluebuild);
-    drawBuildings(blackbuildcoords,blackbuild);
-    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
-    selectHexItem.close();
-};
-//OnClick for button on popup menu to put the blue stading stone on selected hex
-document.getElementById("btnBlueStone").onclick = function() {
-    for (i in elements) {
-        i.build = "";
-    }
-    bluebuildcoords[0] = selectedElem;
-    elements.find(x => ((x.id[0] == bluebuildcoords[0][0]) &&  (x.id[1] == bluebuildcoords[0][1]))).build = "bt";
-    ctxBuild.setTransform(1,0,0,1,0,0);
-    ctxBuild.clearRect(0, 0,
-                buildingsBoard.width, buildingsBoard.height);
-    drawBuildings(whitebuildcoords,whitebuild);
-    drawBuildings(greenbuildcoords,greenbuild);
-    drawBuildings(bluebuildcoords,bluebuild);
-    drawBuildings(blackbuildcoords,blackbuild);
-    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
-    selectHexItem.close();
-};
-//OnClick for button on popup menu to put the blue shack on selected hex
-document.getElementById("btnBlueShack").onclick = function() {
-    for (i in elements) {
-        i.build = "";
-    }
-    bluebuildcoords[1] = selectedElem;
-    elements.find(x => ((x.id[0] == bluebuildcoords[1][0]) &&  (x.id[1] == bluebuildcoords[1][1]))).build = "bs";
-    ctxBuild.setTransform(1,0,0,1,0,0);
-    ctxBuild.clearRect(0, 0,
-                buildingsBoard.width, buildingsBoard.height);
-    drawBuildings(whitebuildcoords,whitebuild);
-    drawBuildings(greenbuildcoords,greenbuild);
-    drawBuildings(bluebuildcoords,bluebuild);
-    drawBuildings(blackbuildcoords,blackbuild);
-    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
-    selectHexItem.close();
-};
-//OnClick for button on popup menu to put the black stading stone on selected hex
-document.getElementById("btnBlackStone").onclick = function() {
-    for (i in elements) {
-        i.build = "";
-    }
-    blackbuildcoords[0] = selectedElem;
-    elements.find(x => ((x.id[0] == blackbuildcoords[0][0]) &&  (x.id[1] == blackbuildcoords[0][1]))).build = "xt";
-    ctxBuild.setTransform(1,0,0,1,0,0);
-    ctxBuild.clearRect(0, 0,
-                buildingsBoard.width, buildingsBoard.height);
-    drawBuildings(whitebuildcoords,whitebuild);
-    drawBuildings(greenbuildcoords,greenbuild);
-    drawBuildings(bluebuildcoords,bluebuild);
-    drawBuildings(blackbuildcoords,blackbuild);
-    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
-    selectHexItem.close();
-};
-//OnClick for button on popup menu to put the black shack on selected hex
-document.getElementById("btnBlackShack").onclick = function() {
-    for (i in elements) {
-        i.build = "";
-    }
-    blackbuildcoords[1] = selectedElem;
-    elements.find(x => ((x.id[0] == blackbuildcoords[1][0]) &&  (x.id[1] == blackbuildcoords[1][1]))).build = "xs";
-    ctxBuild.setTransform(1,0,0,1,0,0);
-    ctxBuild.clearRect(0, 0,
-                buildingsBoard.width, buildingsBoard.height);
-    drawBuildings(whitebuildcoords,whitebuild);
-    drawBuildings(greenbuildcoords,greenbuild);
-    drawBuildings(bluebuildcoords,bluebuild);
-    drawBuildings(blackbuildcoords,blackbuild);
-    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
-    selectHexItem.close();
-};
-//OnClick for button on popup menu to remove buildings on selected hex
-document.getElementById("btnNoBuild").onclick = function() {
+function removeBuildsFromSelectedElem(){
     var hexBuilds = elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).build;
+    
     switch(hexBuilds){
         case "wt":
             whitebuildcoords[0] = [0,0];
@@ -1029,10 +1039,232 @@ document.getElementById("btnNoBuild").onclick = function() {
         case "xs":
             blackbuildcoords[1] = [0,0];
             break;
+    }   
+}
+//OnClick for button on popup menu to put the white stading stone on selected hex
+function btnWhiteStoneClickTest(){
+    //console.log("In Onclick for White Tower")
+    removeBuildsFromSelectedElem()
+    for (var i=0;i<elements.length;i++) {
+        elements[i].build = "";
     }
-    for (i in elements) {
-        i.build = "";
+    console.log(selectedElem);
+    whitebuildcoords[0] = selectedElem;
+    elements.find(x => ((x.id[0] == whitebuildcoords[0][0]) &&  (x.id[1] == whitebuildcoords[0][1]))).build = "wt";
+    ctxBuild.setTransform(1,0,0,1,0,0);
+    ctxBuild.clearRect(0, 0,
+                buildingsBoard.width, buildingsBoard.height);
+    drawBuildings(whitebuildcoords,whitebuild);
+    drawBuildings(greenbuildcoords,greenbuild);
+    drawBuildings(bluebuildcoords,bluebuild);
+    drawBuildings(blackbuildcoords,blackbuild);
+    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
+    selectHexItem.close();
+}
+module.exports.btnWhiteStoneClickTest = btnWhiteStoneClickTest;
+document.getElementById("btnWhiteStone").onclick = function() {
+    btnWhiteStoneClickTest();
+};
+//OnClick for button on popup menu to put the white shack on selected hex
+function btnWhiteShackClickTest(){
+    removeBuildsFromSelectedElem()
+    for (var i=0;i<elements.length;i++) {
+        elements[i].build = "";
     }
+    console.log("Inside OnClick");
+    console.log(selectedElem);
+    whitebuildcoords[1] = selectedElem;
+    elements.find(x => ((x.id[0] == whitebuildcoords[1][0]) &&  (x.id[1] == whitebuildcoords[1][1]))).build = "ws";
+    ctxBuild.setTransform(1,0,0,1,0,0);
+    ctxBuild.clearRect(0, 0,
+                buildingsBoard.width, buildingsBoard.height);
+    drawBuildings(whitebuildcoords,whitebuild);
+    drawBuildings(greenbuildcoords,greenbuild);
+    drawBuildings(bluebuildcoords,bluebuild);
+    drawBuildings(blackbuildcoords,blackbuild);
+    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
+    selectHexItem.close();
+}
+module.exports.btnWhiteShackClickTest = btnWhiteShackClickTest;
+document.getElementById("btnWhiteShack").onclick = function() {
+    btnWhiteShackClickTest();
+};
+//OnClick for button on popup menu to put the green stading stone on selected hex
+function btnGreenStoneClickTest(){
+    for (var i=0;i<elements.length;i++) {
+        elements[i].build = "";
+    }
+    greenbuildcoords[0] = selectedElem;
+    elements.find(x => ((x.id[0] == greenbuildcoords[0][0]) &&  (x.id[1] == greenbuildcoords[0][1]))).build = "gt";
+    ctxBuild.setTransform(1,0,0,1,0,0);
+    ctxBuild.clearRect(0, 0,
+                buildingsBoard.width, buildingsBoard.height);
+    drawBuildings(whitebuildcoords,whitebuild);
+    drawBuildings(greenbuildcoords,greenbuild);
+    drawBuildings(bluebuildcoords,bluebuild);
+    drawBuildings(blackbuildcoords,blackbuild);
+    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
+    selectHexItem.close();
+}
+module.exports.btnGreenStoneClickTest = btnGreenStoneClickTest;
+document.getElementById("btnGreenStone").onclick = function() {
+    btnGreenStoneClickTest();
+};
+//OnClick for button on popup menu to put the green shack on selected hex
+function btnGreenShackClickTest(){
+    removeBuildsFromSelectedElem()
+    for (var i=0;i<elements.length;i++) {
+        elements[i].build = "";
+    }
+    greenbuildcoords[1] = selectedElem;
+    elements.find(x => ((x.id[0] == greenbuildcoords[1][0]) &&  (x.id[1] == greenbuildcoords[1][1]))).build = "gs";
+    ctxBuild.setTransform(1,0,0,1,0,0);
+    ctxBuild.clearRect(0, 0,
+                buildingsBoard.width, buildingsBoard.height);
+    drawBuildings(whitebuildcoords,whitebuild);
+    drawBuildings(greenbuildcoords,greenbuild);
+    drawBuildings(bluebuildcoords,bluebuild);
+    drawBuildings(blackbuildcoords,blackbuild);
+    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
+    selectHexItem.close();
+}
+module.exports.btnGreenShackClickTest = btnGreenShackClickTest;
+document.getElementById("btnGreenShack").onclick = function() {
+    btnGreenShackClickTest();
+};
+//OnClick for button on popup menu to put the blue stading stone on selected hex
+function btnBlueStoneClickTest(){
+    removeBuildsFromSelectedElem()
+    for (var i=0;i<elements.length;i++) {
+        elements[i].build = "";
+    }
+    bluebuildcoords[0] = selectedElem;
+    elements.find(x => ((x.id[0] == bluebuildcoords[0][0]) &&  (x.id[1] == bluebuildcoords[0][1]))).build = "bt";
+    ctxBuild.setTransform(1,0,0,1,0,0);
+    ctxBuild.clearRect(0, 0,
+                buildingsBoard.width, buildingsBoard.height);
+    drawBuildings(whitebuildcoords,whitebuild);
+    drawBuildings(greenbuildcoords,greenbuild);
+    drawBuildings(bluebuildcoords,bluebuild);
+    drawBuildings(blackbuildcoords,blackbuild);
+    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
+    selectHexItem.close();
+}
+module.exports.btnBlueStoneClickTest = btnBlueStoneClickTest;
+document.getElementById("btnBlueStone").onclick = function() {
+    btnBlueStoneClickTest();
+};
+//OnClick for button on popup menu to put the blue shack on selected hex
+function btnBlueShackClickTest(){
+    removeBuildsFromSelectedElem()
+    for (var i=0;i<elements.length;i++) {
+        elements[i].build = "";
+    }
+    bluebuildcoords[1] = selectedElem;
+    elements.find(x => ((x.id[0] == bluebuildcoords[1][0]) &&  (x.id[1] == bluebuildcoords[1][1]))).build = "bs";
+    ctxBuild.setTransform(1,0,0,1,0,0);
+    ctxBuild.clearRect(0, 0,
+                buildingsBoard.width, buildingsBoard.height);
+    drawBuildings(whitebuildcoords,whitebuild);
+    drawBuildings(greenbuildcoords,greenbuild);
+    drawBuildings(bluebuildcoords,bluebuild);
+    drawBuildings(blackbuildcoords,blackbuild);
+    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
+    selectHexItem.close();
+}
+module.exports.btnBlueShackClickTest = btnBlueShackClickTest;
+document.getElementById("btnBlueShack").onclick = function() {
+    btnBlueShackClickTest();
+};
+//OnClick for button on popup menu to put the black stading stone on selected hex
+function btnBlackStoneClickTest(){
+    removeBuildsFromSelectedElem()
+    for (var i=0;i<elements.length;i++) {
+        elements[i].build = "";
+    }
+    blackbuildcoords[0] = selectedElem;
+    elements.find(x => ((x.id[0] == blackbuildcoords[0][0]) &&  (x.id[1] == blackbuildcoords[0][1]))).build = "xt";
+    ctxBuild.setTransform(1,0,0,1,0,0);
+    ctxBuild.clearRect(0, 0,
+                buildingsBoard.width, buildingsBoard.height);
+    drawBuildings(whitebuildcoords,whitebuild);
+    drawBuildings(greenbuildcoords,greenbuild);
+    drawBuildings(bluebuildcoords,bluebuild);
+    drawBuildings(blackbuildcoords,blackbuild);
+    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
+    selectHexItem.close();
+}
+module.exports.btnBlackStoneClickTest = btnBlackStoneClickTest;
+document.getElementById("btnBlackStone").onclick = function() {
+    btnBlackStoneClickTest();
+};
+//OnClick for button on popup menu to put the black shack on selected hex
+function btnBlackShackClickTest(){
+    removeBuildsFromSelectedElem()
+    for (var i=0;i<elements.length;i++) {
+        elements[i].build = "";
+    }
+    blackbuildcoords[1] = selectedElem;
+    elements.find(x => ((x.id[0] == blackbuildcoords[1][0]) &&  (x.id[1] == blackbuildcoords[1][1]))).build = "xs";
+    ctxBuild.setTransform(1,0,0,1,0,0);
+    ctxBuild.clearRect(0, 0,
+                buildingsBoard.width, buildingsBoard.height);
+    drawBuildings(whitebuildcoords,whitebuild);
+    drawBuildings(greenbuildcoords,greenbuild);
+    drawBuildings(bluebuildcoords,bluebuild);
+    drawBuildings(blackbuildcoords,blackbuild);
+    //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
+    selectHexItem.close();
+}
+module.exports.btnBlackShackClickTest = btnBlackShackClickTest;
+document.getElementById("btnBlackShack").onclick = function() {
+    btnBlackShackClickTest();
+};
+//OnClick for button on popup menu to remove buildings on selected hex
+function btnNoBuildClickTest(){
+    var hexBuilds = elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).build;
+    console.log(selectedElem)
+    switch(hexBuilds){
+        case "wt":
+            whitebuildcoords[0] = [0,0];
+            break;
+        case "ws":
+            whitebuildcoords[1] = [0,0];
+            break;
+        case "gt":
+            greenbuildcoords[0] = [0,0];
+            break;
+        case "gs":
+            greenbuildcoords[1] = [0,0];
+            break;
+        case "bt":
+            bluebuildcoords[0] = [0,0];
+            break;
+        case "bs":
+            bluebuildcoords[1] = [0,0];
+            break;
+        case "xt":
+            blackbuildcoords[0] = [0,0];
+            break;
+        case "xs":
+            blackbuildcoords[1] = [0,0];
+            console.log("I'm Here")
+            break;
+    }
+    var tempFound = false;
+    for (var i=0;i<elements.length;i++) {
+        //loopElem = elements[i]
+        if(elements[i].build == "xs"){
+            console.log("Found Building")
+            console.log(i)
+            tempFound = true;
+        }
+        elements[i].build = "";
+        if (tempFound == true){
+            console.log(elements[i])
+        }
+    }
+    console.log(blackbuildcoords)
     //blackbuildcoords[1] = selectedElem;
     
     ctxBuild.setTransform(1,0,0,1,0,0);
@@ -1044,14 +1276,19 @@ document.getElementById("btnNoBuild").onclick = function() {
     drawBuildings(blackbuildcoords,blackbuild);
     //console.log(elements.find(x => ((x.id[0] == whitebuildcoords[0]) &&  (x.id[1] == whitebuildcoords[1]))));
     selectHexItem.close();
+}
+module.exports.btnNoBuildClickTest = btnNoBuildClickTest;
+document.getElementById("btnNoBuild").onclick = function() {
+    btnNoBuildClickTest();
 };
 //OnClick for button to generate random board
-document.getElementById("newBoard").onclick = function() {
-    //genNewBoard()
+function btnNewBoardTest(){
     document.getElementById("newBoard").disabled = true;
     document.getElementById("boardControls").classList.add("disabled");
-    gameModeBox.showModal();
-    };
+    gameModeBox.showModal();    
+}
+module.exports.btnNewBoardTest = btnNewBoardTest;
+document.getElementById("newBoard").onclick = function(){btnNewBoardTest()};
 //OnClick for button on popup menu to generate random normal map
 document.getElementById("btnNormalMode").onclick = function() {
     genNewBoard(0);
@@ -1065,7 +1302,9 @@ document.getElementById("btnAdvMode").onclick = function() {
     document.getElementById("newGame").disabled = false;
     };
 //OnClick for checkbox to flip tile 1 (top left)
-tileOneFlip.onclick = function() {
+function tileOneFlipClickTest(){
+    //console.log(document.getElementById("tileOneFlip").checked)
+    const tileOneFlip = document.getElementById("tileOneFlip")
     if (tileOneFlip.checked){
         flip[0] = 1;  
     }
@@ -1087,9 +1326,13 @@ tileOneFlip.onclick = function() {
     drawBuildings(greenbuildcoords,greenbuild);
     drawBuildings(bluebuildcoords,bluebuild);
     drawBuildings(blackbuildcoords,blackbuild);
-};
+}
+module.exports.tileOneFlipClickTest = tileOneFlipClickTest;
+tileOneFlip.onclick = function(){tileOneFlipClickTest()};
 //OnClick for checkbox to flip tile 2 (top right)
-tileTwoFlip.onclick = function() {
+function tileTwoFlipClickTest(){
+    //console.log(document.getElementById("tileTwoFlip").checked)
+    const tileTwoFlip = document.getElementById("tileTwoFlip")
     if (tileTwoFlip.checked){
         flip[1] = 1;  
     }
@@ -1111,9 +1354,12 @@ tileTwoFlip.onclick = function() {
     drawBuildings(greenbuildcoords,greenbuild);
     drawBuildings(bluebuildcoords,bluebuild);
     drawBuildings(blackbuildcoords,blackbuild);
-};
+}
+module.exports.tileTwoFlipClickTest = tileTwoFlipClickTest;
+tileTwoFlip.onclick = function(){tileTwoFlipClickTest()};
 //OnClick for checkbox to flip tile 3 (middle left)
-tileThreeFlip.onclick = function() {
+function tileThreeFlipClickTest(){
+    const tileThreeFlip = document.getElementById("tileThreeFlip")
     if (tileThreeFlip.checked){
         flip[2] = 1;  
     }
@@ -1135,9 +1381,14 @@ tileThreeFlip.onclick = function() {
     drawBuildings(greenbuildcoords,greenbuild);
     drawBuildings(bluebuildcoords,bluebuild);
     drawBuildings(blackbuildcoords,blackbuild);
+}
+module.exports.tileThreeFlipClickTest = tileThreeFlipClickTest;
+tileThreeFlip.onclick = function() {
+    tileThreeFlipClickTest();
 };
 //OnClick for checkbox to flip tile 4 (middle right)
-tileFourFlip.onclick = function() {
+function tileFourFlipClickTest(){
+    const tileFourFlip = document.getElementById("tileFourFlip")
     if (tileFourFlip.checked){
         flip[3] = 1;  
     }
@@ -1159,9 +1410,14 @@ tileFourFlip.onclick = function() {
     drawBuildings(greenbuildcoords,greenbuild);
     drawBuildings(bluebuildcoords,bluebuild);
     drawBuildings(blackbuildcoords,blackbuild);
+}
+module.exports.tileFourFlipClickTest = tileFourFlipClickTest;
+tileFourFlip.onclick = function() {
+    tileFourFlipClickTest();
 };
 //OnClick for checkbox to flip tile 5 (bottom left)
-tileFiveFlip.onclick = function() {
+function tileFiveFlipClickTest(){
+    const tileFiveFlip = document.getElementById("tileFiveFlip")
     if (tileFiveFlip.checked){
         flip[4] = 1;  
     }
@@ -1183,9 +1439,14 @@ tileFiveFlip.onclick = function() {
     drawBuildings(greenbuildcoords,greenbuild);
     drawBuildings(bluebuildcoords,bluebuild);
     drawBuildings(blackbuildcoords,blackbuild);
+}
+module.exports.tileFiveFlipClickTest = tileFiveFlipClickTest;
+tileFiveFlip.onclick = function() {
+    tileFiveFlipClickTest();
 };
 //OnClick for checkbox to flip tile 6 (bottom right)
-tileSixFlip.onclick = function() {
+function tileSixFlipClickTest(){
+    const tileSixFlip = document.getElementById("tileSixFlip")
     if (tileSixFlip.checked){
         flip[5] = 1;  
     }
@@ -1207,11 +1468,22 @@ tileSixFlip.onclick = function() {
     drawBuildings(greenbuildcoords,greenbuild);
     drawBuildings(bluebuildcoords,bluebuild);
     drawBuildings(blackbuildcoords,blackbuild);
+}
+module.exports.tileSixFlipClickTest = tileSixFlipClickTest;
+tileSixFlip.onclick = function() {
+    tileSixFlipClickTest();
 };
 //OnClick for dropdown menu to select tile for position 1 (top left)
-tileOneSelector.onclick = function() {
-    if (tileOrder[0] != this.selectedIndex + 1){
-  var newTile = this.selectedIndex + 1;
+function tileOneSelectorClickTest(){
+    var tileOneSelector = document.getElementById("tileOne");
+    var tileTwoSelector = document.getElementById("tileTwo");
+    var tileThreeSelector = document.getElementById("tileThree");
+    var tileFourSelector = document.getElementById("tileFour");
+    var tileFiveSelector = document.getElementById("tileFive");
+    var tileSixSelector = document.getElementById("tileSix");
+
+    if (tileOrder[0] != tileOneSelector.selectedIndex + 1){
+  var newTile = tileOneSelector.selectedIndex + 1;
   var prevTile = tileOrder[0];
   for (var i=0;i<6;i++){
     if (tileOrder[i] == newTile){
@@ -1257,14 +1529,24 @@ tileOneSelector.onclick = function() {
     drawBuildings(greenbuildcoords,greenbuild);
     drawBuildings(bluebuildcoords,bluebuild);
     drawBuildings(blackbuildcoords,blackbuild);
-    }
+    }        
+}
+module.exports.tileOneSelectorClickTest = tileOneSelectorClickTest;
+tileOneSelector.onclick = function() {
+    tileOneSelectorClickTest();
 };
 
 
 //OnClick for dropdown menu to select tile for position 2 (top right)
-tileTwoSelector.onclick = function() {
-    if (tileOrder[1] != this.selectedIndex + 1){
-  var newTile = this.selectedIndex + 1;
+function tileTwoSelectorClickTest(){
+    var tileOneSelector = document.getElementById("tileOne");
+    var tileTwoSelector = document.getElementById("tileTwo");
+    var tileThreeSelector = document.getElementById("tileThree");
+    var tileFourSelector = document.getElementById("tileFour");
+    var tileFiveSelector = document.getElementById("tileFive");
+    var tileSixSelector = document.getElementById("tileSix");
+    if (tileOrder[1] != tileTwoSelector.selectedIndex + 1){
+  var newTile = tileTwoSelector.selectedIndex + 1;
   var prevTile = tileOrder[1];
   for (var i=0;i<6;i++){
     if (tileOrder[i] == newTile){
@@ -1310,10 +1592,19 @@ tileTwoSelector.onclick = function() {
     drawBuildings(bluebuildcoords,bluebuild);
     drawBuildings(blackbuildcoords,blackbuild);
     }
+}
+tileTwoSelector.onclick = function() {
+    tileTwoSelectorClickTest();    
 };
-
+module.exports.tileTwoSelectorClickTest = tileTwoSelectorClickTest;
 //OnClick for dropdown menu to select tile for position 3 (middle left)
-tileThreeSelector.onclick = function() {
+function tileThreeSelectorClickTest(){
+    var tileOneSelector = document.getElementById("tileOne");
+    var tileTwoSelector = document.getElementById("tileTwo");
+    var tileThreeSelector = document.getElementById("tileThree");
+    var tileFourSelector = document.getElementById("tileFour");
+    var tileFiveSelector = document.getElementById("tileFive");
+    var tileSixSelector = document.getElementById("tileSix");
     if (tileOrder[2] != this.selectedIndex + 1){
   var newTile = this.selectedIndex + 1;
   var prevTile = tileOrder[2];
@@ -1361,62 +1652,81 @@ tileThreeSelector.onclick = function() {
     drawBuildings(bluebuildcoords,bluebuild);
     drawBuildings(blackbuildcoords,blackbuild);
     }
+}
+tileThreeSelector.onclick = function() {
+    tileThreeSelectorClickTest();    
 };
-
+module.exports.tileThreeSelectorClickTest = tileThreeSelectorClickTest;
 //OnClick for dropdown menu to select tile for position 4 (middle right)
-tileFourSelector.onclick = function() {
-    if (tileOrder[3] != this.selectedIndex + 1){
-  var newTile = this.selectedIndex + 1;
-  var prevTile = tileOrder[3];
-  for (var i=0;i<6;i++){
-    if (tileOrder[i] == newTile){
-        tileOrder[i] = prevTile;
-        switch(i){
-            case 0:
-                tileOneSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            case 1:
-                tileTwoSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            case 2:
-                tileThreeSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            case 3:
-                tileFourSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            case 4:
-                tileFiveSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            case 5:
-                tileSixSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            
+function tileFourSelectorClickTest(){
+    var tileOneSelector = document.getElementById("tileOne");
+    var tileTwoSelector = document.getElementById("tileTwo");
+    var tileThreeSelector = document.getElementById("tileThree");
+    var tileFourSelector = document.getElementById("tileFour");
+    var tileFiveSelector = document.getElementById("tileFive");
+    var tileSixSelector = document.getElementById("tileSix");    
+    if (tileOrder[3] != tileFourSelector.selectedIndex + 1){
+        var newTile = tileFourSelector.selectedIndex + 1;
+        var prevTile = tileOrder[3];
+        for (var i=0;i<6;i++){
+          if (tileOrder[i] == newTile){
+              tileOrder[i] = prevTile;
+              switch(i){
+                  case 0:
+                      tileOneSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  case 1:
+                      tileTwoSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  case 2:
+                      tileThreeSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  case 3:
+                      tileFourSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  case 4:
+                      tileFiveSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  case 5:
+                      tileSixSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  
+              }
+              break;
+          }
         }
-        break;
-    }
-  }
-  tileOrder[3] = newTile;
-  ctxBoard.setTransform(1,0,0,1,0,0);
-    ctxBoard.clearRect(0, 0,
-                board.width, board.height);
-    habs = [];
-    colors = [];
-    createGridLayout(tileOrder,flip);
-    drawGrid(colors,habs);
-    drawHabs(createPoly(EDGES,0.9*RADIUS),habs);
-    ctxBuild.setTransform(1,0,0,1,0,0);
-    ctxBuild.clearRect(0, 0,
-                buildingsBoard.width, buildingsBoard.height);
-    drawBuildings(whitebuildcoords,whitebuild);
-    drawBuildings(greenbuildcoords,greenbuild);
-    drawBuildings(bluebuildcoords,bluebuild);
-    drawBuildings(blackbuildcoords,blackbuild);
-    }
+        tileOrder[3] = newTile;
+        ctxBoard.setTransform(1,0,0,1,0,0);
+          ctxBoard.clearRect(0, 0,
+                      board.width, board.height);
+          habs = [];
+          colors = [];
+          createGridLayout(tileOrder,flip);
+          drawGrid(colors,habs);
+          drawHabs(createPoly(EDGES,0.9*RADIUS),habs);
+          ctxBuild.setTransform(1,0,0,1,0,0);
+          ctxBuild.clearRect(0, 0,
+                      buildingsBoard.width, buildingsBoard.height);
+          drawBuildings(whitebuildcoords,whitebuild);
+          drawBuildings(greenbuildcoords,greenbuild);
+          drawBuildings(bluebuildcoords,bluebuild);
+          drawBuildings(blackbuildcoords,blackbuild);
+          }
+}
+tileFourSelector.onclick = function() {
+    tileFourSelectorClickTest();    
 };
+module.exports.tileFourSelectorClickTest = tileFourSelectorClickTest;
 //OnClick for dropdown menu to select tile for position 5 (bottom left)
-tileFiveSelector.onclick = function() {
-    if (tileOrder[4] != this.selectedIndex + 1){
-  var newTile = this.selectedIndex + 1;
+function tileFiveSelectorClickTest(){
+    var tileOneSelector = document.getElementById("tileOne");
+    var tileTwoSelector = document.getElementById("tileTwo");
+    var tileThreeSelector = document.getElementById("tileThree");
+    var tileFourSelector = document.getElementById("tileFour");
+    var tileFiveSelector = document.getElementById("tileFive");
+    var tileSixSelector = document.getElementById("tileSix"); 
+    if (tileOrder[4] != tileFiveSelector.selectedIndex + 1){
+  var newTile = tileFiveSelector.selectedIndex + 1;
   var prevTile = tileOrder[4];
   for (var i=0;i<6;i++){
     if (tileOrder[i] == newTile){
@@ -1462,61 +1772,75 @@ tileFiveSelector.onclick = function() {
     drawBuildings(bluebuildcoords,bluebuild);
     drawBuildings(blackbuildcoords,blackbuild);
     }
+}
+tileFiveSelector.onclick = function() {
+    tileFiveSelectorClickTest();    
 };
+module.exports.tileFiveSelectorClickTest = tileFiveSelectorClickTest;
 //OnClick for dropdown menu to select tile for position 6 (bottom right)
-tileSixSelector.onclick = function() {
-    if (tileOrder[5] != this.selectedIndex + 1){
-  var newTile = this.selectedIndex + 1;
-  var prevTile = tileOrder[5];
-  for (var i=0;i<6;i++){
-    if (tileOrder[i] == newTile){
-        tileOrder[i] = prevTile;
-        switch(i){
-            case 0:
-                tileOneSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            case 1:
-                tileTwoSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            case 2:
-                tileThreeSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            case 3:
-                tileFourSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            case 4:
-                tileFiveSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            case 5:
-                tileSixSelector.options[tileOrder[i]-1].selected = 'selected';
-                break;
-            
+function tileSixSelectorClickTest(){
+    var tileOneSelector = document.getElementById("tileOne");
+    var tileTwoSelector = document.getElementById("tileTwo");
+    var tileThreeSelector = document.getElementById("tileThree");
+    var tileFourSelector = document.getElementById("tileFour");
+    var tileFiveSelector = document.getElementById("tileFive");
+    var tileSixSelector = document.getElementById("tileSix"); 
+    if (tileOrder[5] != tileSixSelector.selectedIndex + 1){
+        var newTile = tileSixSelector.selectedIndex + 1;
+        var prevTile = tileOrder[5];
+        for (var i=0;i<6;i++){
+          if (tileOrder[i] == newTile){
+              tileOrder[i] = prevTile;
+              switch(i){
+                  case 0:
+                      tileOneSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  case 1:
+                      tileTwoSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  case 2:
+                      tileThreeSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  case 3:
+                      tileFourSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  case 4:
+                      tileFiveSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  case 5:
+                      tileSixSelector.options[tileOrder[i]-1].selected = 'selected';
+                      break;
+                  
+              }
+              break;
+          }
         }
-        break;
-    }
-  }
-  tileOrder[5] = newTile;
-  ctxBoard.setTransform(1,0,0,1,0,0);
-    ctxBoard.clearRect(0, 0,
-                board.width, board.height);
-    habs = [];
-    colors = [];
-    createGridLayout(tileOrder,flip);
-    drawGrid(colors,habs);
-    drawHabs(createPoly(EDGES,0.9*RADIUS),habs);
-    ctxBuild.setTransform(1,0,0,1,0,0);
-    ctxBuild.clearRect(0, 0,
-                buildingsBoard.width, buildingsBoard.height);
-    drawBuildings(whitebuildcoords,whitebuild);
-    drawBuildings(greenbuildcoords,greenbuild);
-    drawBuildings(bluebuildcoords,bluebuild);
-    drawBuildings(blackbuildcoords,blackbuild);
-    }
+        tileOrder[5] = newTile;
+        ctxBoard.setTransform(1,0,0,1,0,0);
+          ctxBoard.clearRect(0, 0,
+                      board.width, board.height);
+          habs = [];
+          colors = [];
+          createGridLayout(tileOrder,flip);
+          drawGrid(colors,habs);
+          drawHabs(createPoly(EDGES,0.9*RADIUS),habs);
+          ctxBuild.setTransform(1,0,0,1,0,0);
+          ctxBuild.clearRect(0, 0,
+                      buildingsBoard.width, buildingsBoard.height);
+          drawBuildings(whitebuildcoords,whitebuild);
+          drawBuildings(greenbuildcoords,greenbuild);
+          drawBuildings(bluebuildcoords,bluebuild);
+          drawBuildings(blackbuildcoords,blackbuild);
+          }  
+}
+tileSixSelector.onclick = function() {
+    tileSixSelectorClickTest()   
 };
+module.exports.tileSixSelectorClickTest = tileSixSelectorClickTest;
 var tempTokensArr;
 //var selectedElem;
 //OnClick for button on popup menu to place a cube from player 1 on the selected hex
-document.getElementById("btnP1Cube").onclick = function() {
+function btnP1CubeClickTest(){
     tempTokensArr = elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces;
     for(var i=0;i<tempTokensArr.length;i++){
         if((tempTokensArr[i] == "p1c") || (tempTokensArr[i] == "p1d")){
@@ -1527,8 +1851,12 @@ document.getElementById("btnP1Cube").onclick = function() {
     tempTokensArr.push("p1c");
     drawTokens(false);
     console.log()
-    selectHexItem.close();        
+    selectHexItem.close();
+}
+document.getElementById("btnP1Cube").onclick = function() {
+    btnP1CubeClickTest()            
 };
+module.exports.btnP1CubeClickTest = btnP1CubeClickTest;
 //OnClick for button on popup menu to place a cube from player 2 on the selected hex
 document.getElementById("btnP2Cube").onclick = function() {
     tempTokensArr = elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces;

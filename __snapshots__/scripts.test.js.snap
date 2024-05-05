@@ -1,5 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`drawBoard drawBoard_basicBoardNoBuildings_correctDrawOnCanvasAndSavedCorrectInElementsArr 1`] = `Array []`;
+
+exports[`drawBoard drawBoard_basicBoardNoBuildings_editElementsCorrect 1`] = `Array []`;
+
+exports[`drawBoard drawBoard_randomIntroBoard_correctDrawOnCanvasAndSavedCorrectInElementsArr 1`] = `Array []`;
+
+exports[`drawBoard drawBoard_randomIntroBoard_editElementsCorrect 1`] = `Array []`;
+
+exports[`drawBoard drawBoard_randomNormalBoard_correctDrawOnCanvasAndSavedCorrectInElementsArr 1`] = `Array []`;
+
+exports[`drawBoard drawBoard_randomNormalBoard_editElementsCorrect 1`] = `Array []`;
+
+exports[`drawBuild drawBuild_blackShack11_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuild drawBuild_blackStone11_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuild drawBuild_blueShack11_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuild drawBuild_blueStone11_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuild drawBuild_greenShack11_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuild drawBuild_greenStone11_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuild drawBuild_whiteShack11_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuild drawBuild_whiteStone11_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuildings drawBuildings_blackStone11blackShack44_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuildings drawBuildings_blueStone11blueShack44_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuildings drawBuildings_greenStone11greenShack44_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawBuildings drawBuildings_whiteStone11whiteShack44_buildingDrawnOnCanvasAndSavedInElementsArr 1`] = `Array []`;
+
+exports[`drawGrid drawGrid_tileOrder123456_canvasAtStartHexesCorrectColor 1`] = `Array []`;
+
+exports[`drawGrid drawGrid_tileOrder123456AllFlips_canvasAtStartHexesCorrectColor 1`] = `Array []`;
+
+exports[`drawGrid drawGrid_tileOrder123456NoFlips_canvasAtStartHexesCorrectColor 1`] = `Array []`;
+
+exports[`drawHabs drawHabs_tileOrder123456AllFlips_elementsArrCorrectHabs 1`] = `Array []`;
+
+exports[`drawHabs drawHabs_tileOrder123456NoFlips_elementsArrCorrectHabs 1`] = `Array []`;
+
 exports[`drawPoly drawPoly_hexCenteredOn11_canvasAt11ColoredBlackOnBoard 1`] = `
 Array [
   Object {
@@ -97,3 +143,17 @@ Array [
 exports[`drawTile drawTile_tile1CenteredOn11_canvasAt11ColorEqualToWater 1`] = `Array []`;
 
 exports[`drawTile drawTile_tile1CenteredOn11_canvasAt42ColorEqualToDesert 1`] = `Array []`;
+
+exports[`drawTile drawTile_tile1CenteredOn14_canvasAt14ColorEqualToWater 1`] = `Array []`;
+
+exports[`drawTile drawTile_tile1CenteredOn17_canvasAt17ColorEqualToWater 1`] = `Array []`;
+
+exports[`drawTile drawTile_tile1CenteredOn71_canvasAt71ColorEqualToWater 1`] = `Array []`;
+
+exports[`drawTile drawTile_tile1CenteredOn74_canvasAt74ColorEqualToWater 1`] = `Array []`;
+
+exports[`drawTile drawTile_tile1CenteredOn77_canvasAt77ColorEqualToWater 1`] = `Array []`;
+
+exports[`drawTile drawTile_tile2CenteredOn11_canvasAt11ColorEqualToSwamp 1`] = `Array []`;
+
+exports[`genEmptyBoard genEmptyBoard_none_correctDrawOnCanvasAndSavedCorrectInElementsArr 1`] = `Array []`;

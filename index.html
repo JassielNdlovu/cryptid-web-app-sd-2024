@@ -101,50 +101,50 @@
                 </button>
             </section>
         </dialog>
-        <dialog id="selectHexItem">
+        <dialog id="selectHexItem", data-testid="selectHexItem">
             <section id="hexBuildings">
             Buildings
             <section id="whiteBuilds", class="optButtons">
-                <button id="btnWhiteStone", class="dlgBtn">
+                <button id="btnWhiteStone" data-testid="btnWhiteStone", class="dlgBtn">
                     White Stone
                 </button>
-                <button id="btnWhiteShack", class="dlgBtn">
+                <button id="btnWhiteShack" data-testid="btnWhiteShack", class="dlgBtn">
                     White Shack
                 </button>   
             </section>
             <section id="blueBuilds", class="optButtons">
-                <button id="btnBlueStone", class="dlgBtn">
+                <button id="btnBlueStone" data-testid="btnBlueStone", class="dlgBtn">
                     Blue Stone
                 </button>
-                <button id="btnBlueShack", class="dlgBtn">
+                <button id="btnBlueShack" data-testid="btnBlueShack", class="dlgBtn">
                     Blue Shack
                 </button>   
             </section>
             <section id="greenBuilds", class="optButtons">
-                <button id="btnGreenStone", class="dlgBtn">
+                <button id="btnGreenStone" data-testid="btnGreenStone", class="dlgBtn">
                     Green Stone
                 </button>
-                <button id="btnGreenShack", class="dlgBtn">
+                <button id="btnGreenShack" data-testid="btnGreenShack", class="dlgBtn">
                     Green Shack
                 </button>   
             </section>
             <section id="blackBuilds", class="optButtons">
-                <button id="btnBlackStone", class="dlgBtn">
+                <button id="btnBlackStone" data-testid="btnBlackStone", class="dlgBtn">
                     Black Stone
                 </button>
-                <button id="btnBlackShack", class="dlgBtn">
+                <button id="btnBlackShack" data-testid="btnBlackShack", class="dlgBtn">
                     Black Shack
                 </button>   
             </section>
             <section id="noBuilds", class="optButtons">
-                <button id="btnNoBuild", class="dlgBtn">
+                <button id="btnNoBuild" data-testid="noBuilds", class="dlgBtn">
                     No Building
                 </button>  
             </section>
             </section>
             Tokens
             <section id="p1Tokens", class="optButtons">
-                <button id="btnP1Cube", class="dlgBtn">
+                <button id="btnP1Cube" data-testid="btnP1Cube", class="dlgBtn">
                     Player 1 Cube
                 </button>
                 <button id="btnP1Disk", class="dlgBtn">
@@ -193,19 +193,19 @@
             </section>
         </dialog>
         <main>
-        <canvas id="board" width="1000px" height="550px"></canvas>
+        <canvas id="board" data-testid="board" width="1000px" height="550px"></canvas>
         <canvas id="buildings" width="1000px" height="550px"></canvas>
-        <canvas id="tokens" width="1000px" height="550px"></canvas>
+        <canvas id="tokens" data-testid="tokensBoard" width="1000px" height="550px"></canvas>
         </main>
         <section id="gameInstructions">
             <p id="gameInstructionsText">Game Instructions Go Here</p>
         </section>
-        <section id="boardControls">
-            <button id="newBoard" onclick="genNewBoard()">New Random Board</button>
+        <section id="boardControls" data-testid="secBoardControls">
+            <button id="newBoard" data-testid="btnNewBoard" onclick="genNewBoard()">New Random Board</button>
             <section class="twoTileOptWrp">
                 <article class="tileOptions", id="tileOneOpt">
 
-                    <select name="tileOne", id="tileOne">
+                    <select name="tileOne", id="tileOne", data-testid="tileOne">
                         <option selected="selected", value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -214,11 +214,11 @@
                         <option value="6">6</option>
                     </select>
                     flipTileOne
-                    <input id="tileOneFlip", type="checkbox">
+                    <input id="tileOneFlip" data-testid="tileOneFlip", type="checkbox">
                 </article>
                 <article class="tileOptions", id="tileTwoOpt">
 
-                    <select name="tileOne", id="tileTwo">
+                    <select name="tileTwo", id="tileTwo" , data-testid="tileTwo">
                         <option value="1">1</option>
                         <option selected="selected", value="2">2</option>
                         <option value="3">3</option>
@@ -227,13 +227,13 @@
                         <option value="6">6</option>
                     </select>
                     flipTileTwo
-                    <input id="tileTwoFlip", type="checkbox">
+                    <input id="tileTwoFlip" data-testid="tileTwoFlip", type="checkbox">
                 </article>
             </section>
             <section class="twoTileOptWrp">
                 <article class="tileOptions", id="tileThreeOpt">
 
-                    <select name="tileThree", id="tileThree">
+                    <select name="tileThree", id="tileThree", data-testid="tileThree">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option selected="selected", value="3">3</option>
@@ -242,11 +242,11 @@
                         <option value="6">6</option>
                     </select>
                     flipTileThree
-                    <input id="tileThreeFlip", type="checkbox">
+                    <input id="tileThreeFlip" data-testid="tileThreeFlip", type="checkbox">
                 </article>
                 <article class="tileOptions", id="tileFourOpt">
 
-                    <select name="tileFour", id="tileFour">
+                    <select name="tileFour", id="tileFour", data-testid="tileFour">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -255,13 +255,13 @@
                         <option value="6">6</option>
                     </select>
                     flipTileFour
-                    <input id="tileFourFlip", type="checkbox">
+                    <input id="tileFourFlip" data-testid="tileFourFlip", type="checkbox">
                 </article>
             </section>
             <section class="twoTileOptWrp">
                 <article class="tileOptions", id="tileFiveOpt">
 
-                    <select name="tileFive", id="tileFive">
+                    <select name="tileFive", id="tileFive", data-testid="tileFive">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -270,11 +270,11 @@
                         <option value="6">6</option>
                     </select>
                     flipTileFive
-                    <input id="tileFiveFlip", type="checkbox">
+                    <input id="tileFiveFlip" data-testid="tileFiveFlip", type="checkbox">
                 </article>
                 <article class="tileOptions", id="tileSixOpt">
 
-                    <select name="tileSix", id="tileSix">
+                    <select name="tileSix", id="tileSix", data-testid="tileSix">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -283,7 +283,7 @@
                         <option selected="selected", value="6">6</option>
                     </select>
                     flipTileSix
-                    <input id="tileSixFlip", type="checkbox">
+                    <input id="tileSixFlip" data-testid="tileSixFlip", type="checkbox">
                 </article>
             </section>
         </section>
