@@ -4,7 +4,7 @@
   "description": "Cryptid Board Game Web App repo for Software Design course",
   "main": "main.js",
   "scripts": {
-    "test": "jest --coverage || exit 0",
+    "test": "jest --coverage",
     "type": "module"
   },
   "jest": {
