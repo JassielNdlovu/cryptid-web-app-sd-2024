@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@boardJestTest
+      uses: actions/checkout@v2
       with:
         fetch-depth: 2
 
