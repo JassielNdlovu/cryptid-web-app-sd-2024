@@ -87,6 +87,9 @@ typings/
 dist
 out
 
+# Environment Variables
+.env
+
 # Azure Functions artifacts
 bin
 obj
