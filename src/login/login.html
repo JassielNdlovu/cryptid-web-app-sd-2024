@@ -7,17 +7,9 @@
     <title>Cryptid Login Page</title>
     <link rel="stylesheet" href="styles.css">
 
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-          const response = await fetch('/.auth/me');
-          const userData = await response.json();
-          
-          if (userData.clientPrincipal) {
-            // User is authenticated, redirect to profile page
-            window.location.href = "/profile/profile.html";
-          }
-        });
-      </script>
+    <script src="checkLogin.js">
+        localStorage.setItem('attemptedLogin', 'true');
+    </script>
 </head>
 <body>
     <header>
@@ -26,7 +18,7 @@
     <main class="main-body">
         <section class="section-login">
             <h1>Welcome</h1>
-            <p>Please Log-in to Your Google Account</p>
+            <p>Please Log-in to your account</p>
 
             <a href="/.auth/login/google">
                 <button type="button" class="btn-google-login" href="/.auth/login/google">

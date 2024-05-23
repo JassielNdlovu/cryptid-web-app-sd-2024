@@ -35,6 +35,6 @@
 		}
 	],
 	"navigationFallback": {
-		"rewrite": "/profile/profile.html"
+		"rewrite": "/index.html"
 	}
 }
