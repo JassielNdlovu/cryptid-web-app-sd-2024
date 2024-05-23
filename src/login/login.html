@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptid Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+          const response = await fetch('/.auth/me');
+          const userData = await response.json();
+          
+          if (userData.clientPrincipal) {
+            // User is authenticated, redirect to profile page
+            window.location.href = "/profile/profile.html";
+          }
+        });
+      </script>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main class="main-body">
+        <section class="section-login">
+            <h1>Welcome</h1>
+            <p>Please Log-in to Your Google Account</p>
+
+            <a href="/.auth/login/google">
+                <button type="button" class="btn-google-login" href="/.auth/login/google">
+                    <img src="../images/google-icon.svg" alt="">
+                    <a href="/.auth/login/google">Continue with Google</a>
+                </button>
+            </a>
+        </section>
+    </main>
+</body>
+</html>

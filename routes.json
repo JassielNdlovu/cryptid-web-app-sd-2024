@@ -1,0 +1,40 @@
+{
+	"auth": {
+		"identityProviders": {
+			"github": {
+				"registration": {
+					"clientIdSettingName": "Ov23liyUixfPg0dmH3bj",
+					"clientSecretSettingName": "c2ae438513589da20e5cae77b9b54bae55a66683"
+				}
+			},
+			"google": {
+				"registration": {
+					"clientIdSettingName": "549022284981-hb55dfbfi8mv87ermrchnstu5jvifiti.apps.googleusercontent.com",
+					"clientSecretSettingName": "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"
+				}
+			}
+		}
+	},
+	"routes": [
+		{
+			"route": "/api/*",
+			"serve": "/api/index.js",
+			"statusCode": 404,
+			"allowedRoles": ["authenticated"]
+		},
+		{
+			"route": "/profile/*",
+			"serve": "/profile/profile.html",
+			"statusCode": 200,
+			"allowedRoles": ["authenticated"]
+		},
+		{
+			"route": "/login/*",
+			"serve": "/login/login.html",
+			"statusCode": 200
+		}
+	],
+	"navigationFallback": {
+		"rewrite": "/profile/profile.html"
+	}
+}
