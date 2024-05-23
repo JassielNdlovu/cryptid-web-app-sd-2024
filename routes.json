@@ -32,7 +32,18 @@
 			"route": "/login/*",
 			"serve": "/login/login.html",
 			"statusCode": 200
-		}
+		},
+		{
+		  "route": "/*",
+		  "redirect": "/profile/profile.html",
+		  "statusCode": 302,
+		  "allowedRoles": ["authenticated"]
+		},
+		{
+		  "route": "/*",
+		  "serve": "/index.html",
+		  "statusCode": 200
+		}	
 	],
 	"navigationFallback": {
 		"rewrite": "/index.html"
