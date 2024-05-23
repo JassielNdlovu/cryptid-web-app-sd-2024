@@ -34,6 +34,11 @@
 			"statusCode": 200
 		},
 		{
+		  "route": "/.auth/login/done",
+		  "redirect": "/profile/profile.html",
+		  "statusCode": 302
+		},
+		{
 		  "route": "/*",
 		  "redirect": "/profile/profile.html",
 		  "statusCode": 302,
