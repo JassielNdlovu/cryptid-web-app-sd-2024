@@ -10,14 +10,6 @@ body {
     padding: 0;
 }
 
-/* .nav-menu {
-    display: 1flex;
-}
-
-.div-board {
-    display: 3flex;
-} */
-
 header {
     background-color: #f9b42d;
     border-radius: 5px;
@@ -37,9 +29,20 @@ main {
 }
 
 .menu {
+    border-radius: 5px;
+    margin: 5px;
+    padding-right: 10px;
     padding-left: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.menu:hover, .vertical-nav a:hover {
+    background-color: rgba(219, 219, 219, 0.4);
+}
+
+#content {
+    margin: 5px;
 }

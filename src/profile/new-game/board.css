@@ -1,0 +1,22 @@
+.game-board {
+    width: 1000px;
+    height: 90vh;
+}
+
+#load-board-btn {
+    background-color: white;
+    color: black;
+    /* border: none; */
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
+    border-left-width: 5px;
+    border-left-color: #f9b42d;
+    border-radius: 2px;
+    height: 30px;
+    width: 100px;
+}
+
+#load-board-btn:hover {
+    background-color: #f1f1f1;
+}

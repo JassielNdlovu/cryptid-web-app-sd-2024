@@ -7,11 +7,11 @@
     <title>Profile</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="nav-bar.css">
-
+    <link rel="stylesheet" href="./new-game/board.css">
 </head>
 <body>
     <header>
-        <div class="menu" onclick="toggleNavBar()">
+        <div class="menu">
             <img src="../images/menu.svg" style="width: 25px; padding-right: 5px;">
             <p><b>Home</b></p>
         </div>
@@ -19,50 +19,37 @@
         <p style="padding-right: 10px;">Cryptid Game</p>
     </header>
     <main>
-        <nav class="nav-main">
-            <div class="vertical-nav">
-                <ul>
-                    <li>
-                        <a href="/" class="homepage">
-                            <img class="home-icon" src="../images/home.svg" style="width: 20px;padding-right: 10px;padding-left: 5px;">
-                            <p class="home-text">Home Page</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="../images/new-game.svg" style="width: 20px;padding-right:10px;padding-left: 5px;">
-                            <p>New Game</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="../images/previous-games.svg" style="width: 18px;padding-right: 10px;padding-left: 5px;">
-                            <p>Previous Games</p>
-                        </a></li>
-                    <li>
-                        <a href="#">
-                            <img src="../images/contact.svg" style="width: 18px;padding-right: 10px;padding-left: 5px;">
-                            <p>Contact Us</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/.auth/logout">
-                            <img src="../images/log-out.svg" style="width: 18px;padding-right: 10px;padding-left: 5px;">
-                            <p>Log Out</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <script src="cryptidBoard.js"></script>
-    </main>
+        <nav class="vertical-nav">
+            <a href="#" class="active" data-page="./dashboard/dashboard.html">
+                <img class="home-icon" src="../images/home.svg" style="width: 20px;padding-right: 10px;padding-left: 5px;">
+                <p class="home-text">Dashboard</p>
+            </a>
 
-    <script>
-        function toggleNavBar() {
-            var navBar = document.querySelector('.vertical-nav');
-            navBar.classList.toggle('visible');
-        }
-    </script>
-    
+            <a href="#" data-page="./new-game/new-game.html">
+                <img src="../images/new-game.svg" style="width: 20px;padding-right:10px;padding-left: 5px;">
+                <p>New Game</p>
+            </a>
+
+            <a href="#" data-page="./previous-games/previous-games.html">
+                <img src="../images/previous-games.svg" style="width: 18px;padding-right: 10px;padding-left: 5px;">
+                <p>Previous Games</p>
+            </a>
+            <a href="#" data-page="./contact-us/contact-us.html">
+                <img src="../images/contact.svg" style="width: 18px;padding-right: 10px;padding-left: 5px;">
+                <p>Contact Us</p>
+            </a>
+
+            <a href="/.auth/logout">
+                <img src="../images/log-out.svg" style="width: 18px;padding-right: 10px;padding-left: 5px;">
+                <p>Log Out</p>
+            </a>
+        </nav>
+
+        <section id="content">
+        </section>
+    </main>   
+
+    <script src="./board/svg-board-setup.js"></script> 
+    <script src="single-page-application.js"></script>
 </body>
 </html>
