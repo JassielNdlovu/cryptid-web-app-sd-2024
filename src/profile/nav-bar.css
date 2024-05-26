@@ -1,6 +1,7 @@
 .vertical-nav {
     width: 150px;
-    height: 90vh;
+    height: 100%;
+    min-height: 90vh;
     padding: 5px;
     margin: 5px;
     border-radius: 10px;

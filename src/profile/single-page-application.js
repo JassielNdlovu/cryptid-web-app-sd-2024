@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (page === "./new-game/new-game.html") {
                 console.log("hello from new-game.html");
-                setUpBoard();
             }
 
             loadPage(page);
