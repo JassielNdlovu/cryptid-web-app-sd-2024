@@ -191,6 +191,11 @@
                     Remove Token
                 </button>   
             </section>
+            <section id="destButton">
+                <button id="btnSetDest", class="dlgBtn">
+                    Set Cryptid Location
+                </button>
+            </section>
         </dialog>
         <main>
         <canvas id="board" width="1000px" height="550px"></canvas>
@@ -198,8 +203,15 @@
         <canvas id="tokens" width="1000px" height="550px"></canvas>
         </main>
         <section id="gameInstructions">
-            <p id="gameInstructionsText">Game Instructions Go Here</p>
+            <p id="gameInstructionsText">Right Click Hex For More Information </p>
+            <button id= "loadsavedgame">
+                review game
+            </button>
+            <button id= "nextturn">
+                next turn
+            </button>
         </section>
+        <section id="custBoard">
         <section id="boardControls">
             <button id="newBoard" onclick="genNewBoard()">New Random Board</button>
             <section class="twoTileOptWrp">
@@ -287,11 +299,286 @@
                 </article>
             </section>
         </section>
+        <section id="clueSelect">
+            <section id="clueSelectP1">
+                Player 1 Clue
+                <select name="clueSelectP1", id="clueP1", class="cluePicker">
+                        <option selected="selected", value="None"> None </option>
+                        <option value="water_or_desert"> The habitat is on water or desert</option>
+                        <option value="water_or_mountain"> The habitat is on water or mountain</option>
+                        <option value='water_or_forest'> The habitat is on water or forest</option>
+                        <option value='water_or_bone'> 'The habitat is on water or swamp'</option>
+                        <option value='forest_or_desert'> 'The habitat is on forest or desert'</option>
+                        <option value='forest_or_mountain'> 'The habitat is on forest or mountain'</option>
+                        <option value='forest_or_bone' > 'The habitat is on forest or swamp'</option>
+                        <option value='desert_or_mountain'>  'The habitat is on desert or mountain'</option>
+                        <option value='desert_or_bone' > 'The habitat is on desert or swamp'</option>
+                        <option value='mountain_or_bone'>  'The habitat is on mountain or swamp'</option>
+                        <option value='within_water'> 'The habitat is within one space of water'</option>
+                        <option value='within_forest'> 'The habitat is within one space of forest'</option>
+                        <option value='within_desert'> 'The habitat is within one space of desert'</option>
+                        <option value='within_mountain'> 'The habitat is within one space of mountain'</option>
+                        <option value='within_bone'> 'The habitat is within one space of swamp'</option>
+                        <option value='within_fissure'>  'The habitat is within one space of either animal territory'</option>
+                        <option value='within_pyramid'>  'The habitat is within two spaces of a standing stone'</option>
+                        <option value='within_colony'> 'The habitat is within two spaces of a shack'</option>
+                        <option value='within_dormant_fissure'>  'The habitat is within two spaces of a bear territory'</option>
+                        <option value='within_active_fissure'> 'The habitat is within two spaces of a cougar territory'</option>
+                        <option value='within_green'>  'The habitat is within three spaces of a green structure'</option>
+                        <option value='within_red'>  'The habitat is within three spaces of a white structure'</option>
+                        <option value='within_blue'> 'The habitat is within three spaces of a blue structure'</option>
+                        <option value='not_within_black'>  'The habitat is within three spaces of a black structure'</option>
+                        <option value="not_water_or_desert" > "The habitat is not on water or desert"</option>
+                        <option value="not_water_or_mountain" > "The habitat is not on water or mountain"</option>
+                        <option value='not_water_or_forest'> 'The habitat is not on water or forest'</option>
+                        <option value='not_water_or_bone'> 'The habitat is not on water or swamp'</option>
+                        <option value='not_forest_or_desert' > 'The habitat not is on forest or desert'</option>
+                        <option value='not_forest_or_mountain' > 'The habitat is not on forest or mountain'</option>
+                        <option value='not_forest_or_bone' > 'The habitat is not on forest or swamp'</option>
+                        <option value='not_desert_or_mountain'>  'The habitat is not on desert or mountain'</option>
+                        <option value='not_desert_or_bone' > 'The habitat is not on desert or swamp'</option>
+                        <option value='not_mountain_or_bone'>  'The habitat is not on mountain or swamp'</option>
+                        <option value='not_within_water'>  'The habitat is not within one space of water'</option>
+                        <option value='not_within_forest'> 'The habitat is not within one space of forest'</option>
+                        <option value='not_within_desert'> 'The habitat is not within one space of desert'</option>
+                        <option value='not_within_mountain'> 'The habitat is not within one space of mountain'</option>
+                        <option value='not_within_bone'> 'The habitat is not within one space of swamp'</option>
+                        <option value='not_within_fissure'>  'The habitat is not within one space of either animal territory'</option>
+                        <option value='not_within_pyramid'>  'The habitat is not within two spaces of a standing stone'</option>
+                        <option value='not_within_colony'> 'The habitat is not within two spaces of a shack'</option>
+                        <option value='not_within_dormant_fissure'>  'The habitat is not within two spaces of a bear territory'</option>
+                        <option value='not_within_active_fissure'> 'The habitat is not within two spaces of a cougar territory'</option>
+                        <option value='not_within_green'>  'The habitat is not within three spaces of a green structure'</option>
+                        <option value='not_within_red'>  'The habitat is not within three spaces of a white structure'</option>
+                        <option value='not_within_blue'> 'The habitat is not within three spaces of a blue structure'</option>
+                        <option value='within_black'>  'The habitat is not within three spaces of a black structure'</option>
+                    </select>    
+            </section>
+            <section id="clueSelectP2">
+                Player 2 Clue
+                <select name="clueSelectP2", id="clueP2", class="cluePicker">
+                        <option selected="selected", value="None"> None </option>
+                        <option value="water_or_desert"> The habitat is on water or desert</option>
+                        <option value="water_or_mountain"> The habitat is on water or mountain</option>
+                        <option value='water_or_forest'> The habitat is on water or forest</option>
+                        <option value='water_or_bone'> 'The habitat is on water or swamp'</option>
+                        <option value='forest_or_desert'> 'The habitat is on forest or desert'</option>
+                        <option value='forest_or_mountain'> 'The habitat is on forest or mountain'</option>
+                        <option value='forest_or_bone' > 'The habitat is on forest or swamp'</option>
+                        <option value='desert_or_mountain'>  'The habitat is on desert or mountain'</option>
+                        <option value='desert_or_bone' > 'The habitat is on desert or swamp'</option>
+                        <option value='mountain_or_bone'>  'The habitat is on mountain or swamp'</option>
+                        <option value='within_water'> 'The habitat is within one space of water'</option>
+                        <option value='within_forest'> 'The habitat is within one space of forest'</option>
+                        <option value='within_desert'> 'The habitat is within one space of desert'</option>
+                        <option value='within_mountain'> 'The habitat is within one space of mountain'</option>
+                        <option value='within_bone'> 'The habitat is within one space of swamp'</option>
+                        <option value='within_fissure'>  'The habitat is within one space of either animal territory'</option>
+                        <option value='within_pyramid'>  'The habitat is within two spaces of a standing stone'</option>
+                        <option value='within_colony'> 'The habitat is within two spaces of a shack'</option>
+                        <option value='within_dormant_fissure'>  'The habitat is within two spaces of a bear territory'</option>
+                        <option value='within_active_fissure'> 'The habitat is within two spaces of a cougar territory'</option>
+                        <option value='within_green'>  'The habitat is within three spaces of a green structure'</option>
+                        <option value='within_red'>  'The habitat is within three spaces of a white structure'</option>
+                        <option value='within_blue'> 'The habitat is within three spaces of a blue structure'</option>
+                        <option value='not_within_black'>  'The habitat is within three spaces of a black structure'</option>
+                        <option value="not_water_or_desert" > "The habitat is not on water or desert"</option>
+                        <option value="not_water_or_mountain" > "The habitat is not on water or mountain"</option>
+                        <option value='not_water_or_forest'> 'The habitat is not on water or forest'</option>
+                        <option value='not_water_or_bone'> 'The habitat is not on water or swamp'</option>
+                        <option value='not_forest_or_desert' > 'The habitat not is on forest or desert'</option>
+                        <option value='not_forest_or_mountain' > 'The habitat is not on forest or mountain'</option>
+                        <option value='not_forest_or_bone' > 'The habitat is not on forest or swamp'</option>
+                        <option value='not_desert_or_mountain'>  'The habitat is not on desert or mountain'</option>
+                        <option value='not_desert_or_bone' > 'The habitat is not on desert or swamp'</option>
+                        <option value='not_mountain_or_bone'>  'The habitat is not on mountain or swamp'</option>
+                        <option value='not_within_water'>  'The habitat is not within one space of water'</option>
+                        <option value='not_within_forest'> 'The habitat is not within one space of forest'</option>
+                        <option value='not_within_desert'> 'The habitat is not within one space of desert'</option>
+                        <option value='not_within_mountain'> 'The habitat is not within one space of mountain'</option>
+                        <option value='not_within_bone'> 'The habitat is not within one space of swamp'</option>
+                        <option value='not_within_fissure'>  'The habitat is not within one space of either animal territory'</option>
+                        <option value='not_within_pyramid'>  'The habitat is not within two spaces of a standing stone'</option>
+                        <option value='not_within_colony'> 'The habitat is not within two spaces of a shack'</option>
+                        <option value='not_within_dormant_fissure'>  'The habitat is not within two spaces of a bear territory'</option>
+                        <option value='not_within_active_fissure'> 'The habitat is not within two spaces of a cougar territory'</option>
+                        <option value='not_within_green'>  'The habitat is not within three spaces of a green structure'</option>
+                        <option value='not_within_red'>  'The habitat is not within three spaces of a white structure'</option>
+                        <option value='not_within_blue'> 'The habitat is not within three spaces of a blue structure'</option>
+                        <option value='within_black'>  'The habitat is not within three spaces of a black structure'</option>
+                    </select>    
+            </section>
+            <section id="clueSelectP3">
+                Player 3 Clue
+                <select name="clueSelectP3", id="clueP3", class="cluePicker">
+                        <option selected="selected", value="None"> None </option>
+                        <option value="water_or_desert"> The habitat is on water or desert</option>
+                        <option value="water_or_mountain"> The habitat is on water or mountain</option>
+                        <option value='water_or_forest'> The habitat is on water or forest</option>
+                        <option value='water_or_bone'> 'The habitat is on water or swamp'</option>
+                        <option value='forest_or_desert'> 'The habitat is on forest or desert'</option>
+                        <option value='forest_or_mountain'> 'The habitat is on forest or mountain'</option>
+                        <option value='forest_or_bone' > 'The habitat is on forest or swamp'</option>
+                        <option value='desert_or_mountain'>  'The habitat is on desert or mountain'</option>
+                        <option value='desert_or_bone' > 'The habitat is on desert or swamp'</option>
+                        <option value='mountain_or_bone'>  'The habitat is on mountain or swamp'</option>
+                        <option value='within_water'> 'The habitat is within one space of water'</option>
+                        <option value='within_forest'> 'The habitat is within one space of forest'</option>
+                        <option value='within_desert'> 'The habitat is within one space of desert'</option>
+                        <option value='within_mountain'> 'The habitat is within one space of mountain'</option>
+                        <option value='within_bone'> 'The habitat is within one space of swamp'</option>
+                        <option value='within_fissure'>  'The habitat is within one space of either animal territory'</option>
+                        <option value='within_pyramid'>  'The habitat is within two spaces of a standing stone'</option>
+                        <option value='within_colony'> 'The habitat is within two spaces of a shack'</option>
+                        <option value='within_dormant_fissure'>  'The habitat is within two spaces of a bear territory'</option>
+                        <option value='within_active_fissure'> 'The habitat is within two spaces of a cougar territory'</option>
+                        <option value='within_green'>  'The habitat is within three spaces of a green structure'</option>
+                        <option value='within_red'>  'The habitat is within three spaces of a white structure'</option>
+                        <option value='within_blue'> 'The habitat is within three spaces of a blue structure'</option>
+                        <option value='not_within_black'>  'The habitat is within three spaces of a black structure'</option>
+                        <option value="not_water_or_desert" > "The habitat is not on water or desert"</option>
+                        <option value="not_water_or_mountain" > "The habitat is not on water or mountain"</option>
+                        <option value='not_water_or_forest'> 'The habitat is not on water or forest'</option>
+                        <option value='not_water_or_bone'> 'The habitat is not on water or swamp'</option>
+                        <option value='not_forest_or_desert' > 'The habitat not is on forest or desert'</option>
+                        <option value='not_forest_or_mountain' > 'The habitat is not on forest or mountain'</option>
+                        <option value='not_forest_or_bone' > 'The habitat is not on forest or swamp'</option>
+                        <option value='not_desert_or_mountain'>  'The habitat is not on desert or mountain'</option>
+                        <option value='not_desert_or_bone' > 'The habitat is not on desert or swamp'</option>
+                        <option value='not_mountain_or_bone'>  'The habitat is not on mountain or swamp'</option>
+                        <option value='not_within_water'>  'The habitat is not within one space of water'</option>
+                        <option value='not_within_forest'> 'The habitat is not within one space of forest'</option>
+                        <option value='not_within_desert'> 'The habitat is not within one space of desert'</option>
+                        <option value='not_within_mountain'> 'The habitat is not within one space of mountain'</option>
+                        <option value='not_within_bone'> 'The habitat is not within one space of swamp'</option>
+                        <option value='not_within_fissure'>  'The habitat is not within one space of either animal territory'</option>
+                        <option value='not_within_pyramid'>  'The habitat is not within two spaces of a standing stone'</option>
+                        <option value='not_within_colony'> 'The habitat is not within two spaces of a shack'</option>
+                        <option value='not_within_dormant_fissure'>  'The habitat is not within two spaces of a bear territory'</option>
+                        <option value='not_within_active_fissure'> 'The habitat is not within two spaces of a cougar territory'</option>
+                        <option value='not_within_green'>  'The habitat is not within three spaces of a green structure'</option>
+                        <option value='not_within_red'>  'The habitat is not within three spaces of a white structure'</option>
+                        <option value='not_within_blue'> 'The habitat is not within three spaces of a blue structure'</option>
+                        <option value='within_black'>  'The habitat is not within three spaces of a black structure'</option>
+                    </select>    
+            </section>
+            <section id="clueSelectP4">
+                Player 4 Clue
+                <select name="clueSelectP4", id="clueP4", class="cluePicker">
+                        <option selected="selected", value="None"> None </option>
+                        <option value="water_or_desert"> The habitat is on water or desert</option>
+                        <option value="water_or_mountain"> The habitat is on water or mountain</option>
+                        <option value='water_or_forest'> The habitat is on water or forest</option>
+                        <option value='water_or_bone'> 'The habitat is on water or swamp'</option>
+                        <option value='forest_or_desert'> 'The habitat is on forest or desert'</option>
+                        <option value='forest_or_mountain'> 'The habitat is on forest or mountain'</option>
+                        <option value='forest_or_bone' > 'The habitat is on forest or swamp'</option>
+                        <option value='desert_or_mountain'>  'The habitat is on desert or mountain'</option>
+                        <option value='desert_or_bone' > 'The habitat is on desert or swamp'</option>
+                        <option value='mountain_or_bone'>  'The habitat is on mountain or swamp'</option>
+                        <option value='within_water'> 'The habitat is within one space of water'</option>
+                        <option value='within_forest'> 'The habitat is within one space of forest'</option>
+                        <option value='within_desert'> 'The habitat is within one space of desert'</option>
+                        <option value='within_mountain'> 'The habitat is within one space of mountain'</option>
+                        <option value='within_bone'> 'The habitat is within one space of swamp'</option>
+                        <option value='within_fissure'>  'The habitat is within one space of either animal territory'</option>
+                        <option value='within_pyramid'>  'The habitat is within two spaces of a standing stone'</option>
+                        <option value='within_colony'> 'The habitat is within two spaces of a shack'</option>
+                        <option value='within_dormant_fissure'>  'The habitat is within two spaces of a bear territory'</option>
+                        <option value='within_active_fissure'> 'The habitat is within two spaces of a cougar territory'</option>
+                        <option value='within_green'>  'The habitat is within three spaces of a green structure'</option>
+                        <option value='within_red'>  'The habitat is within three spaces of a white structure'</option>
+                        <option value='within_blue'> 'The habitat is within three spaces of a blue structure'</option>
+                        <option value='not_within_black'>  'The habitat is within three spaces of a black structure'</option>
+                        <option value="not_water_or_desert" > "The habitat is not on water or desert"</option>
+                        <option value="not_water_or_mountain" > "The habitat is not on water or mountain"</option>
+                        <option value='not_water_or_forest'> 'The habitat is not on water or forest'</option>
+                        <option value='not_water_or_bone'> 'The habitat is not on water or swamp'</option>
+                        <option value='not_forest_or_desert' > 'The habitat not is on forest or desert'</option>
+                        <option value='not_forest_or_mountain' > 'The habitat is not on forest or mountain'</option>
+                        <option value='not_forest_or_bone' > 'The habitat is not on forest or swamp'</option>
+                        <option value='not_desert_or_mountain'>  'The habitat is not on desert or mountain'</option>
+                        <option value='not_desert_or_bone' > 'The habitat is not on desert or swamp'</option>
+                        <option value='not_mountain_or_bone'>  'The habitat is not on mountain or swamp'</option>
+                        <option value='not_within_water'>  'The habitat is not within one space of water'</option>
+                        <option value='not_within_forest'> 'The habitat is not within one space of forest'</option>
+                        <option value='not_within_desert'> 'The habitat is not within one space of desert'</option>
+                        <option value='not_within_mountain'> 'The habitat is not within one space of mountain'</option>
+                        <option value='not_within_bone'> 'The habitat is not within one space of swamp'</option>
+                        <option value='not_within_fissure'>  'The habitat is not within one space of either animal territory'</option>
+                        <option value='not_within_pyramid'>  'The habitat is not within two spaces of a standing stone'</option>
+                        <option value='not_within_colony'> 'The habitat is not within two spaces of a shack'</option>
+                        <option value='not_within_dormant_fissure'>  'The habitat is not within two spaces of a bear territory'</option>
+                        <option value='not_within_active_fissure'> 'The habitat is not within two spaces of a cougar territory'</option>
+                        <option value='not_within_green'>  'The habitat is not within three spaces of a green structure'</option>
+                        <option value='not_within_red'>  'The habitat is not within three spaces of a white structure'</option>
+                        <option value='not_within_blue'> 'The habitat is not within three spaces of a blue structure'</option>
+                        <option value='within_black'>  'The habitat is not within three spaces of a black structure'</option>
+                    </select>    
+            </section>
+            <section id="clueSelectP5">
+                Player 5 Clue
+                <select name="clueSelectP5", id="clueP5", class="cluePicker">
+                        <option selected="selected", value="None"> None </option>
+                        <option value="water_or_desert"> The habitat is on water or desert</option>
+                        <option value="water_or_mountain"> The habitat is on water or mountain</option>
+                        <option value='water_or_forest'> The habitat is on water or forest</option>
+                        <option value='water_or_bone'> 'The habitat is on water or swamp'</option>
+                        <option value='forest_or_desert'> 'The habitat is on forest or desert'</option>
+                        <option value='forest_or_mountain'> 'The habitat is on forest or mountain'</option>
+                        <option value='forest_or_bone' > 'The habitat is on forest or swamp'</option>
+                        <option value='desert_or_mountain'>  'The habitat is on desert or mountain'</option>
+                        <option value='desert_or_bone' > 'The habitat is on desert or swamp'</option>
+                        <option value='mountain_or_bone'>  'The habitat is on mountain or swamp'</option>
+                        <option value='within_water'> 'The habitat is within one space of water'</option>
+                        <option value='within_forest'> 'The habitat is within one space of forest'</option>
+                        <option value='within_desert'> 'The habitat is within one space of desert'</option>
+                        <option value='within_mountain'> 'The habitat is within one space of mountain'</option>
+                        <option value='within_bone'> 'The habitat is within one space of swamp'</option>
+                        <option value='within_fissure'>  'The habitat is within one space of either animal territory'</option>
+                        <option value='within_pyramid'>  'The habitat is within two spaces of a standing stone'</option>
+                        <option value='within_colony'> 'The habitat is within two spaces of a shack'</option>
+                        <option value='within_dormant_fissure'>  'The habitat is within two spaces of a bear territory'</option>
+                        <option value='within_active_fissure'> 'The habitat is within two spaces of a cougar territory'</option>
+                        <option value='within_green'>  'The habitat is within three spaces of a green structure'</option>
+                        <option value='within_red'>  'The habitat is within three spaces of a white structure'</option>
+                        <option value='within_blue'> 'The habitat is within three spaces of a blue structure'</option>
+                        <option value='not_within_black'>  'The habitat is within three spaces of a black structure'</option>
+                        <option value="not_water_or_desert" > "The habitat is not on water or desert"</option>
+                        <option value="not_water_or_mountain" > "The habitat is not on water or mountain"</option>
+                        <option value='not_water_or_forest'> 'The habitat is not on water or forest'</option>
+                        <option value='not_water_or_bone'> 'The habitat is not on water or swamp'</option>
+                        <option value='not_forest_or_desert' > 'The habitat not is on forest or desert'</option>
+                        <option value='not_forest_or_mountain' > 'The habitat is not on forest or mountain'</option>
+                        <option value='not_forest_or_bone' > 'The habitat is not on forest or swamp'</option>
+                        <option value='not_desert_or_mountain'>  'The habitat is not on desert or mountain'</option>
+                        <option value='not_desert_or_bone' > 'The habitat is not on desert or swamp'</option>
+                        <option value='not_mountain_or_bone'>  'The habitat is not on mountain or swamp'</option>
+                        <option value='not_within_water'>  'The habitat is not within one space of water'</option>
+                        <option value='not_within_forest'> 'The habitat is not within one space of forest'</option>
+                        <option value='not_within_desert'> 'The habitat is not within one space of desert'</option>
+                        <option value='not_within_mountain'> 'The habitat is not within one space of mountain'</option>
+                        <option value='not_within_bone'> 'The habitat is not within one space of swamp'</option>
+                        <option value='not_within_fissure'>  'The habitat is not within one space of either animal territory'</option>
+                        <option value='not_within_pyramid'>  'The habitat is not within two spaces of a standing stone'</option>
+                        <option value='not_within_colony'> 'The habitat is not within two spaces of a shack'</option>
+                        <option value='not_within_dormant_fissure'>  'The habitat is not within two spaces of a bear territory'</option>
+                        <option value='not_within_active_fissure'> 'The habitat is not within two spaces of a cougar territory'</option>
+                        <option value='not_within_green'>  'The habitat is not within three spaces of a green structure'</option>
+                        <option value='not_within_red'>  'The habitat is not within three spaces of a white structure'</option>
+                        <option value='not_within_blue'> 'The habitat is not within three spaces of a blue structure'</option>
+                        <option value='within_black'>  'The habitat is not within three spaces of a black structure'</option>
+                    </select>    
+            </section>            
+        </section>
+        </section>
         <section id="gameControls">
             <section id="gameButtonWrap">
             <button id="newGame" onclick="genNewGame()">New Game</button>
             <button id="startGame"> Start Game</button>
             <button id="resetBoard"> Reset Board</button>
+
+
             </section>
             <section id="p1RuleBox", class="ruleBox">
                 <button disabled=true, id="p1Rule", class="btnRule">Show P1 Rule</button>
