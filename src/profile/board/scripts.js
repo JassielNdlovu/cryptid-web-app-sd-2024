@@ -165,6 +165,8 @@ function genEmptyBoard(){
     document.getElementById("endGame").disabled = true;
     document.getElementById("newGame").disabled = true;
     document.getElementById("endTurn").disabled = true;
+    document.getElementById("btnNoToken").disabled = false;
+    document.getElementById("btnNoPlayerToken").disabled = true;
     document.getElementById("startGame").disabled = true;
     document.getElementById("btnP4Disk").disabled = false;
     document.getElementById("btnP5Disk").disabled = false;
@@ -177,6 +179,10 @@ function genEmptyBoard(){
     currentGameRules = [];
     currentGameDest = [0,0];
     currentGameHint = "";
+    currentPlayer = 0;
+    inGame = false;
+    cubePlaced = false;
+    currentTokenUpdate = [];
     gameMode = 0;
     url = "https://www.playcryptid.com/php/getGame.php";
     ctxBoard.setTransform(1,0,0,1,0,0);
@@ -232,9 +238,9 @@ function genNewBoard(mode){
     if (mode == 0) {
   tempStr = "intro";
   
-} else {
+    } else {
   tempStr = "normal"
-}
+    }
 url = url.concat("?mode=".concat(tempStr));
 console.log(url);
 var noCORSurl = 'https://api.allorigins.win/get?' + url;
@@ -827,12 +833,13 @@ tokens.addEventListener('click', function(event) {
             //alert('clicked element ' + element.id);
             selectedElem = element.id;
             console.log(element.id)
-            if (inGame){
+            if ((inGame) && (turnTaken == false)){
                 document.getElementById("takeTurn").showModal();
             }
-            else{
+            else {
                 selectHexItem.showModal(); //popup menu to select a piece to put on selected hex
             }
+            
             
         }
     });
@@ -1787,6 +1794,8 @@ document.getElementById("endSolution").onclick = function(){
     document.getElementById("p5Rule").disabled = true;
     document.getElementById("endGame").disabled = true;
     document.getElementById("endTurn").disabled = true;
+    document.getElementById("btnNoToken").disabled = false;
+    document.getElementById("btnNoPlayerToken").disabled = true;
     document.getElementById("startGame").disabled = true;
     document.getElementById("endGameBox").close(); 
     inGame = false;   
@@ -1869,6 +1878,7 @@ document.getElementById("startGame").onclick = function(){
         "turns": []
 
     }
+    currentGameRecord = newGameRecord;
     document.getElementById("newGame").disabled = true;
     document.getElementById("p1Rule").disabled = true;
     document.getElementById("p2Rule").disabled = true;
@@ -1876,12 +1886,140 @@ document.getElementById("startGame").onclick = function(){
     document.getElementById("p4Rule").disabled = true;
     document.getElementById("p5Rule").disabled = true;
     document.getElementById("endTurn").disabled = false;
+    document.getElementById("btnNoToken").disabled = true;
+    document.getElementById("btnNoPlayerToken").disabled = false;
     document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
     document.getElementById("passTurn").showModal();
 }
+document.getElementById("btnNoPlayerToken").onclick = function(){
+    var tokensOnHex = elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces;
+    
+        switch (currentPlayer){
+            case 1:
+                var index = tokensOnHex.indexOf("p1c");
+                if (index > -1) { // only splice array when item is found
+                    tokensOnHex.splice(index, 1);
+                    break; // 2nd parameter means remove one item only
+                }
+                else{
+                    index = tokensOnHex.indexOf("p1d");
+                        if (index > -1) { // only splice array when item is found
+                        tokensOnHex.splice(index, 1);
+                        break; // 2nd parameter means remove one item only
+                    }
+                }
+                break;
+            case 2:
+                var index = tokensOnHex.indexOf("p2c");
+                if (index > -1) { // only splice array when item is found
+                    tokensOnHex.splice(index, 1);
+                    break; // 2nd parameter means remove one item only
+                }
+                else{
+                    index = tokensOnHex.indexOf("p2d");
+                        if (index > -1) { // only splice array when item is found
+                        tokensOnHex.splice(index, 1);
+                        break; // 2nd parameter means remove one item only
+                    }
+                }
+                break;
+            case 3:
+                var index = tokensOnHex.indexOf("p3c");
+                if (index > -1) { // only splice array when item is found
+                    tokensOnHex.splice(index, 1);
+                    break; // 2nd parameter means remove one item only
+                }
+                else{
+                    index = tokensOnHex.indexOf("p3d");
+                        if (index > -1) { // only splice array when item is found
+                        tokensOnHex.splice(index, 1);
+                        break; // 2nd parameter means remove one item only
+                    }
+                }
+                break;
+            case 4:
+                var index = tokensOnHex.indexOf("p4c");
+                if (index > -1) { // only splice array when item is found
+                    tokensOnHex.splice(index, 1);
+                    break; // 2nd parameter means remove one item only
+                }
+                else{
+                    index = tokensOnHex.indexOf("p4d");
+                        if (index > -1) { // only splice array when item is found
+                        tokensOnHex.splice(index, 1);
+                        break; // 2nd parameter means remove one item only
+                    }
+                }
+                break;
+            case 5:
+                var index = tokensOnHex.indexOf("p5c");
+                if (index > -1) { // only splice array when item is found
+                    tokensOnHex.splice(index, 1);
+                    break; // 2nd parameter means remove one item only
+                }
+                else{
+                    index = tokensOnHex.indexOf("p5d");
+                        if (index > -1) { // only splice array when item is found
+                        tokensOnHex.splice(index, 1);
+                        break; // 2nd parameter means remove one item only
+                    }
+                }
+                break;
+        }
+
+    elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces = tokensOnHex;
+    drawTokens(false);
+    console.log()
+    selectHexItem.close();       
+}
+var currentPlayerCubeCount = 0;
+function countCubesFunc(player){
+    var cubeCount = 0;
+    //currentPlayerCubeCount = 0;
+    switch (player){
+        case 1:
+            elements.forEach(function (hex) {
+                    if (hex.pieces.includes("p1c")){
+                        cubeCount = cubeCount + 1;
+                    }
+                });
+            break;
+        case 2:
+            elements.forEach(function (hex) {
+                    if (hex.pieces.includes("p2c")){
+                        cubeCount = cubeCount + 1;
+                    }
+                });
+            break;
+        case 3:
+            elements.forEach(function (hex) {
+                    if (hex.pieces.includes("p3c")){
+                        cubeCount = cubeCount + 1;
+                    }
+                });
+            break;
+        case 4:
+            elements.forEach(function (hex) {
+                    if (hex.pieces.includes("p4c")){
+                        cubeCount = cubeCount + 1;
+                    }
+                });
+            break; 
+        case 5:
+            elements.forEach(function (hex) {
+                    if (hex.pieces.includes("p5c")){
+                        cubeCount = cubeCount + 1;
+                    }
+                });
+            break;       
+    }
+    return cubeCount;
+}
 //OnClick for OK button on pass turn popup to pass the turn to the next player
 document.getElementById("passTurnBtn").onclick = function() {
-    currentPlayer = currentPlayer + 1;
+    if (inGame == false){
+        currentPlayer = currentPlayer + 1;
+    }
     var gameIntruction;
     if ((roundNum == -1)){
         switch(currentPlayer){
@@ -2033,9 +2171,13 @@ document.getElementById("passTurnBtn").onclick = function() {
     }
     else{
         inGame = true;
+        if (turnTaken == false){
+            currentPlayerCubeCount = countCubesFunc(currentPlayer);
+        }
+        console.log(currentGameRecord);
         switch(currentPlayer){
             case 1:
-                currentTurn = 1;
+                
                 document.getElementById("p1Rule").disabled = false;
                 document.getElementById("p2Rule").disabled = true;
                 document.getElementById("p3Rule").disabled = true;
@@ -2046,15 +2188,145 @@ document.getElementById("passTurnBtn").onclick = function() {
                 document.getElementById("p3Tokens").classList.add("disabled");
                 document.getElementById("p4Tokens").classList.add("disabled");
                 document.getElementById("p5Tokens").classList.add("disabled");
-                document.getElementById("endTurn").disabled = true;
-                gameInstruction = "Select a hex to take your turn";
+                console.log(turnTaken);
+                if (turnTaken == true){
+                    document.getElementById("endTurn").disabled = false;
+                    if (cubePlaced == true){
+                        gameInstruction = "Please place a cube on a space where the cryptid cannot be according to your clue, then press End Turn";    
+                    }
+                    else{
+                        gameInstruction = "Press End Turn to pass to the next player";    
+                    }
+                }
+                else{
+                    currentTurn = currentTurn + 1;
+                    document.getElementById("endTurn").disabled = true;
+                    gameInstruction = "Select a hex to take your turn";
+                }
                 
-                break;    
+                break;
+            case 2:
+                
+                document.getElementById("p2Rule").disabled = false;
+                document.getElementById("p1Rule").disabled = true;
+                document.getElementById("p3Rule").disabled = true;
+                document.getElementById("p4Rule").disabled = true;
+                document.getElementById("p5Rule").disabled = true;
+                document.getElementById("p2Tokens").classList.remove("disabled");
+                document.getElementById("p1Tokens").classList.add("disabled");
+                document.getElementById("p3Tokens").classList.add("disabled");
+                document.getElementById("p4Tokens").classList.add("disabled");
+                document.getElementById("p5Tokens").classList.add("disabled");
+                console.log(turnTaken);
+                if (turnTaken == true){
+                    document.getElementById("endTurn").disabled = false;
+                    if (cubePlaced == true){
+                        gameInstruction = "Please place a cub on a space where the cryptid cannot be according to your clue, then press End Turn";    
+                    }
+                    else{
+                        gameInstruction = "Press End Turn to pass to the next player";    
+                    }
+                }
+                else{
+                    currentTurn = currentTurn + 1;
+                    document.getElementById("endTurn").disabled = true;
+                    gameInstruction = "Select a hex to take your turn";
+                }
+                
+                break; 
+            case 3:
+                
+                document.getElementById("p3Rule").disabled = false;
+                document.getElementById("p2Rule").disabled = true;
+                document.getElementById("p1Rule").disabled = true;
+                document.getElementById("p4Rule").disabled = true;
+                document.getElementById("p5Rule").disabled = true;
+                document.getElementById("p3Tokens").classList.remove("disabled");
+                document.getElementById("p2Tokens").classList.add("disabled");
+                document.getElementById("p1Tokens").classList.add("disabled");
+                document.getElementById("p4Tokens").classList.add("disabled");
+                document.getElementById("p5Tokens").classList.add("disabled");
+                console.log(turnTaken);
+                if (turnTaken == true){
+                    document.getElementById("endTurn").disabled = false;
+                    if (cubePlaced == true){
+                        gameInstruction = "Please place a cub on a space where the cryptid cannot be according to your clue, then press End Turn";    
+                    }
+                    else{
+                        gameInstruction = "Press End Turn to pass to the next player";    
+                    }
+                }
+                else{
+                    currentTurn = currentTurn + 1;
+                    document.getElementById("endTurn").disabled = true;
+                    gameInstruction = "Select a hex to take your turn";
+                }
+                
+                break;
+            case 4:
+                
+                document.getElementById("p4Rule").disabled = false;
+                document.getElementById("p2Rule").disabled = true;
+                document.getElementById("p3Rule").disabled = true;
+                document.getElementById("p1Rule").disabled = true;
+                document.getElementById("p5Rule").disabled = true;
+                document.getElementById("p4Tokens").classList.remove("disabled");
+                document.getElementById("p2Tokens").classList.add("disabled");
+                document.getElementById("p3Tokens").classList.add("disabled");
+                document.getElementById("p1Tokens").classList.add("disabled");
+                document.getElementById("p5Tokens").classList.add("disabled");
+                console.log(turnTaken);
+                if (turnTaken == true){
+                    document.getElementById("endTurn").disabled = false;
+                    if (cubePlaced == true){
+                        gameInstruction = "Please place a cub on a space where the cryptid cannot be according to your clue, then press End Turn";    
+                    }
+                    else{
+                        gameInstruction = "Press End Turn to pass to the next player";    
+                    }
+                }
+                else{
+                    currentTurn = currentTurn + 1;
+                    document.getElementById("endTurn").disabled = true;
+                    gameInstruction = "Select a hex to take your turn";
+                }
+                
+                break;
+            case 5:
+                
+                document.getElementById("p5Rule").disabled = false;
+                document.getElementById("p2Rule").disabled = true;
+                document.getElementById("p3Rule").disabled = true;
+                document.getElementById("p4Rule").disabled = true;
+                document.getElementById("p1Rule").disabled = true;
+                document.getElementById("p5Tokens").classList.remove("disabled");
+                document.getElementById("p2Tokens").classList.add("disabled");
+                document.getElementById("p3Tokens").classList.add("disabled");
+                document.getElementById("p4Tokens").classList.add("disabled");
+                document.getElementById("p1Tokens").classList.add("disabled");
+                console.log(turnTaken);
+                if (turnTaken == true){
+                    document.getElementById("endTurn").disabled = false;
+                    if (cubePlaced == true){
+                        gameInstruction = "Please place a cub on a space where the cryptid cannot be according to your clue, then press End Turn";    
+                    }
+                    else{
+                        gameInstruction = "Press End Turn to pass to the next player";    
+                    }
+                }
+                else{
+                    currentTurn = currentTurn + 1;
+                    document.getElementById("endTurn").disabled = true;
+                    gameInstruction = "Select a hex to take your turn";
+                }
+                
+                break;   
         }    
     }
     document.getElementById("gameInstructionsText").innerText = gameInstruction;
     document.getElementById("passTurn").close();
 }
+var turnType = "";
 //OnClick for the End Turn button to end your turn
 document.getElementById("endTurn").onclick = function(){
     if ((roundNum == -1) && (currentPlayer != playerCount)){
@@ -2072,7 +2344,7 @@ document.getElementById("endTurn").onclick = function(){
                 }
                 else{
                     currentTokenUpdate.push("p1c");
-                    recordTurn(newGameRecord,-1,1,"setup",1,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,-1,1,1,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 2";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2089,7 +2361,7 @@ document.getElementById("endTurn").onclick = function(){
                 }
                 else{
                     currentTokenUpdate.push("p2c");
-                    recordTurn(newGameRecord,-1,2,"setup",2,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,-1,2,2,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 3";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2106,7 +2378,7 @@ document.getElementById("endTurn").onclick = function(){
                 }
                 else{
                     currentTokenUpdate.push("p3c");
-                    recordTurn(newGameRecord,-1,3,"setup",3,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,-1,3,3,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 4";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2123,7 +2395,7 @@ document.getElementById("endTurn").onclick = function(){
                 }
                 else{
                     currentTokenUpdate.push("p4c");
-                    recordTurn(newGameRecord,-1,4,"setup",4,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,-1,4,4,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 5";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2149,7 +2421,7 @@ document.getElementById("endTurn").onclick = function(){
                     roundNum = 0;
                     currentPlayer = 0;
                     currentTokenUpdate.push("p3c");
-                    recordTurn(newGameRecord,-1,3,"setup",3,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,-1,3,3,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2168,7 +2440,7 @@ document.getElementById("endTurn").onclick = function(){
                     roundNum = 0;
                     currentPlayer = 0;
                     currentTokenUpdate.push("p4c");
-                    recordTurn(newGameRecord,-1,4,"setup",4,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,-1,4,4,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2187,7 +2459,7 @@ document.getElementById("endTurn").onclick = function(){
                     roundNum = 0;
                     currentPlayer = 0;
                     currentTokenUpdate.push("p5c");
-                    recordTurn(newGameRecord,-1,5,"setup",5,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,-1,5,5,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2209,7 +2481,7 @@ document.getElementById("endTurn").onclick = function(){
                 }
                 else{
                     currentTokenUpdate.push("p1c");
-                    recordTurn(newGameRecord,0,1,"setup",1,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,0,1,1,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 2";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2226,7 +2498,7 @@ document.getElementById("endTurn").onclick = function(){
                 }
                 else{
                     currentTokenUpdate.push("p2c");
-                    recordTurn(newGameRecord,0,2,"setup",2,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,0,2,2,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 3";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2243,7 +2515,7 @@ document.getElementById("endTurn").onclick = function(){
                 }
                 else{
                     currentTokenUpdate.push("p3c");
-                    recordTurn(newGameRecord,0,3,"setup",3,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,0,3,3,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 4";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2260,7 +2532,7 @@ document.getElementById("endTurn").onclick = function(){
                 }
                 else{
                     currentTokenUpdate.push("p4c");
-                    recordTurn(newGameRecord,0,4,"setup",4,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,0,4,4,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 5";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2286,7 +2558,7 @@ document.getElementById("endTurn").onclick = function(){
                     roundNum = 1;
                     currentPlayer = 0;
                     currentTokenUpdate.push("p3c");
-                    recordTurn(newGameRecord,0,3,"setup",3,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,0,3,3,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
                     document.getElementById("passTurn").showModal();
                     //console.log(newGameRecord);
@@ -2306,7 +2578,7 @@ document.getElementById("endTurn").onclick = function(){
                     roundNum = 1;
                     currentPlayer = 0;
                     currentTokenUpdate.push("p4c");
-                    recordTurn(newGameRecord,0,4,"setup",4,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,0,4,4,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
                     document.getElementById("passTurn").showModal();
                 }
@@ -2325,17 +2597,135 @@ document.getElementById("endTurn").onclick = function(){
                     roundNum = 1;
                     currentPlayer = 0;
                     currentTokenUpdate.push("p5c");
-                    recordTurn(newGameRecord,0,5,"setup",5,selectedElem,currentTokenUpdate)
+                    recordTurn(currentGameRecord,0,5,5,"setup",selectedElem,currentTokenUpdate)
                     document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
                     document.getElementById("passTurn").showModal();
                 }
             }
             
     }
+    else if ((cubePlaced == true) && (turnType == "quest") && (turnTaken)){
+        var newCubeCount = countCubesFunc(currentPlayer);
+        if (newCubeCount != currentPlayerCubeCount + 1){
+            document.getElementById("hintBoxText").innerText = "Please place exactly one more cube on the board";
+            document.getElementById("hintBox").showModal();    
+        }
+        else{
+            currentTokenUpdate = [];
+           switch (currentPlayer){
+            case 1:
+                currentTokenUpdate.push("p1c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 2";
+                break;
+            case 2:
+                currentTokenUpdate.push("p2c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 3";
+                break;
+            case 3:
+                currentTokenUpdate.push("p3c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 4";
+                break;
+            case 4:
+                currentTokenUpdate.push("p4c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 5";
+                break;
+            case 5:
+                currentTokenUpdate.push("p5c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
+                break;
+           }
+           recordTurn(newGameRecord,1,currentTurn,currentPlayer,"quest",selectedElem,currentTokenUpdate);
+           if (currentPlayer == playerCount){
+            currentPlayer = 0;
+            document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
+           }
+           turnTaken = false;
+           cubePlaced = false;
+           currentPlayer = currentPlayer + 1;
+            document.getElementById("passTurn").showModal();
+        }
+    }
+    else if ((turnType == "quest") && (cubePlaced == false) && (turnTaken)){
+        currentTokenUpdate = [];
+           switch (currentPlayer){
+            case 1:
+                //currentTokenUpdate.push("p1c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 2";
+                break;
+            case 2:
+                //currentTokenUpdate.push("p2c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 3";
+                break;
+            case 3:
+                //currentTokenUpdate.push("p3c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 4";
+                break;
+            case 4:
+                //currentTokenUpdate.push("p4c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 5";
+                break;
+            case 5:
+                //currentTokenUpdate.push("p5c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
+                break;
+           }
+           //recordTurn(newGameRecord,1,currentTurn,"quest",currentPlayer,selectedElem,currentTokenUpdate);
+           if (currentPlayer == playerCount){
+            currentPlayer = 0;
+            document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
+           }
+           turnTaken = false;
+           cubePlaced = false;
+           
+           currentPlayer = currentPlayer + 1;
+            document.getElementById("passTurn").showModal();    
+    }
+    else if ((cubePlaced == true) && (turnType == "search") && (turnTaken)){
+        var newCubeCount = countCubesFunc(currentPlayer);
+        if (newCubeCount != currentPlayerCubeCount + 1){
+            document.getElementById("hintBoxText").innerText = "Please place exactly one more cube on the board";
+            document.getElementById("hintBox").showModal();    
+        }
+        else{
+            currentTokenUpdate = [];
+           switch (currentPlayer){
+            case 1:
+                currentTokenUpdate.push("p1c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 2";
+                break;
+            case 2:
+                currentTokenUpdate.push("p2c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 3";
+                break;
+            case 3:
+                currentTokenUpdate.push("p3c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 4";
+                break;
+            case 4:
+                currentTokenUpdate.push("p4c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 5";
+                break;
+            case 5:
+                currentTokenUpdate.push("p5c");
+                document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
+                break;
+           }
+           recordTurn(newGameRecord,1,currentTurn,currentPlayer,"search",selectedElem,currentTokenUpdate);
+           if (currentPlayer == playerCount){
+            currentPlayer = 0;
+            document.getElementById("passTurnText").innerText = "Please Pass to Player 1";
+           }
+           turnTaken = false;
+           cubePlaced = false;
+           currentPlayer = currentPlayer + 1;
+            document.getElementById("passTurn").showModal();
+        }
+    }
     currentTokenUpdate = [];       
 }
 //OnClick for Question button on take turn popup to take a Question action
 document.getElementById("takeTurnQuest").onclick = function(){
+    turnType = "quest";
     const p = P2();
     switch(currentPlayer){
         case 1:
@@ -2398,7 +2788,7 @@ document.getElementById("takeTurnQuest").onclick = function(){
     ctxTokens.fillStyle = "#ffffff00";
     ctxTokens.strokeStyle = "#6100fc";
     ctxTokens.lineWidth = 4;
-    drawPoly(gridToPixel(selectedElem[0], selectedElem[1], p), createPoly(EDGES,0.9*RADIUS),"tokens");
+    drawPoly(gridToPixel(selectedElem[0], selectedElem[1], p), createPoly(EDGES,0.8*RADIUS),"tokens");
     document.getElementById("pickPlayer").showModal();
     document.getElementById("takeTurn").close();    
 }
@@ -2410,7 +2800,380 @@ document.getElementById("pickPlayer2").onclick = function() {
     document.getElementById("questPlacePiece").showModal();
     document.getElementById("pickPlayer").close();
 }
+document.getElementById("pickPlayer1").onclick = function() {
+    activePlayer = 1;
+    var clue = rules[currentGameRules[0]];
+    document.getElementById("questPlacePieceText").innerText = "The Hex selected id highlighted. Your clue is the following: \n" + clue + "\n Is this a valid space according to your clue?"
+    document.getElementById("questPlacePiece").showModal();
+    document.getElementById("pickPlayer").close();
+}
+document.getElementById("pickPlayer3").onclick = function() {
+    activePlayer = 3;
+    var clue = rules[currentGameRules[2]];
+    document.getElementById("questPlacePieceText").innerText = "The Hex selected id highlighted. Your clue is the following: \n" + clue + "\n Is this a valid space according to your clue?"
+    document.getElementById("questPlacePiece").showModal();
+    document.getElementById("pickPlayer").close();
+}
+document.getElementById("pickPlayer4").onclick = function() {
+    activePlayer = 4;
+    var clue = rules[currentGameRules[3]];
+    document.getElementById("questPlacePieceText").innerText = "The Hex selected id highlighted. Your clue is the following: \n" + clue + "\n Is this a valid space according to your clue?"
+    document.getElementById("questPlacePiece").showModal();
+    document.getElementById("pickPlayer").close();
+}
+document.getElementById("pickPlayer5").onclick = function() {
+    activePlayer = 5;
+    var clue = rules[currentGameRules[4]];
+    document.getElementById("questPlacePieceText").innerText = "The Hex selected id highlighted. Your clue is the following: \n" + clue + "\n Is this a valid space according to your clue?"
+    document.getElementById("questPlacePiece").showModal();
+    document.getElementById("pickPlayer").close();
+}
+var cubePlaced = false;
+var turnTaken = false;
+document.getElementById("questPieceYes").onclick = function() {
+    currentTokenUpdate = []
+     var tokensOnHex = elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces;
+     switch (activePlayer){
+        case 1:
+            tokensOnHex.push("p1d");
+            currentTokenUpdate.push("p1d");
+            break;
+        case 2:
+            tokensOnHex.push("p2d");
+            currentTokenUpdate.push("p2d");
+            break;
+        case 3:
+            tokensOnHex.push("p3d");
+            currentTokenUpdate.push("p3d");
+            break;
+        case 4:
+            tokensOnHex.push("p2d");
+            currentTokenUpdate.push("p4d");
+            break;
+        case 5:
+            tokensOnHex.push("p2d");
+            currentTokenUpdate.push("p5d");
+            break;
+     } 
+    recordTurn(currentGameRecord,1,currentTurn,currentPlayer,"quest",selectedElem,currentTokenUpdate);
+    elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces = tokensOnHex;
+    drawTokens(false);
+    var passText = "";
+    switch (currentPlayer){
+        case 1:
+            passText = "Please Pass to Player 1";
+            break;
+        case 2:
+            passText = "Please Pass to Player 2";
+            break;
+        case 3:
+            passText = "Please Pass to Player 3";
+            break;
+        case 4:
+            passText = "Please Pass to Player 4";
+            break;
+        case 5:
+            passText = "Please Pass to Player 5";
+            break;
+    } 
+    document.getElementById("passTurnText").innerText = passText;
+    turnTaken = true;
+    document.getElementById("passTurn").showModal();
+    document.getElementById("questPlacePiece").close();
+}
+document.getElementById("questPieceNo").onclick = function() {
+    currentTokenUpdate = []
+     var tokensOnHex = elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces;
+     switch (activePlayer){
+        case 1:
+            tokensOnHex.push("p1c");
+            currentTokenUpdate.push("p1c");
+            break;
+        case 2:
+            tokensOnHex.push("p2c");
+            currentTokenUpdate.push("p2c");
+            break;
+        case 3:
+            tokensOnHex.push("p3c");
+            currentTokenUpdate.push("p3c");
+            break;
+        case 4:
+            tokensOnHex.push("p4c");
+            currentTokenUpdate.push("p4c");
+            break;
+        case 5:
+            tokensOnHex.push("p5c");
+            currentTokenUpdate.push("p5c");
+            break;
+     } 
+    recordTurn(currentGameRecord,1,currentTurn,currentPlayer,"quest",selectedElem,currentTokenUpdate);
+    elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces = tokensOnHex;
+    drawTokens(false);
+    var passText = "";
+    switch (currentPlayer){
+        case 1:
+            passText = "Please Pass to Player 1";
+            break;
+        case 2:
+            passText = "Please Pass to Player 2";
+            break;
+        case 3:
+            passText = "Please Pass to Player 3";
+            break;
+        case 4:
+            passText = "Please Pass to Player 4";
+            break;
+        case 5:
+            passText = "Please Pass to Player 5";
+            break;
+    } 
+    document.getElementById("passTurnText").innerText = passText;
+    document.getElementById("passTurn").showModal();
+    turnTaken = true;
+    cubePlaced = true;
+    console.log("Cube Placed")
+    document.getElementById("questPlacePiece").close();
+}
 
-/*document.getElementById("questPieceYes").onclick = function() {
+document.getElementById("takeTurnSearch").onclick = function(){
+    //var nextPlayer;
+    currentTokenUpdate = [];
+    turnType = "search";
+    var piece;
+    turnTaken = true;
+    const p = P2();
+    switch(currentPlayer){
+        case 1:
+            activePlayer = 2;
+            passText = "Please Pass to Player 2";
+            piece = "p1d";
+        break;
+        case 2:
+            activePlayer = 3;  
+            passText = "Please Pass to Player 3";
+            piece = "p2d";  
+        break;
+        case 3:
+            piece = "p3d";
+            switch (playerCount){
+                case 3:
+                    activePlayer = 1;
+                    passText = "Please Pass to Player 1";
+                    break;
+                default:
+                    activePlayer = 4;
+                    passText = "Please Pass to Player 4";
+                    break;
+            }    
+        break;
+        case 4:
+        piece = "p4d";
+            switch (playerCount){
+                case 4:
+                    activePlayer = 1;
+                    passText = "Please Pass to Player 1";
+                    break;
+                default:
+                    activePlayer = 5;
+                    passText = "Please Pass to Player 5";
+                    break;
+            }    
+        break;
+        case 5:
+        piece = "p5d";
+            activePlayer = 1; 
+            passText = "Please Pass to Player 1";   
+        break;
+    }
+    elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces.push(piece);
+    drawTokens(false);
+    ctxTokens.fillStyle = "#ffffff00";
+    ctxTokens.strokeStyle = "#6100fc";
+    ctxTokens.lineWidth = 4;
+    
+    //document.getElementById("questPlacePieceText").innerText = "The Hex selected id highlighted. Your clue is the following: \n" + clue + "\n Is this a valid space according to your clue?"
+    //document.getElementById("questPlacePiece").showModal();
+    drawPoly(gridToPixel(selectedElem[0], selectedElem[1], p), createPoly(EDGES,0.8*RADIUS),"tokens");
+    //document.getElementById("pickPlayer").showModal();
+    document.getElementById("passTurnTextSearch").innerText = passText;
+    document.getElementById("passTurnSearch").showModal();
+    document.getElementById("takeTurn").close();      
+}
 
-}*/
+document.getElementById("passTurnBtnSearch").onclick = function(){
+    if (cubePlaced == false){
+        if (activePlayer == currentPlayer){
+            document.getElementById("p1RuleText").innerText = rules[currentGameRules[0]];
+            document.getElementById("p2RuleText").innerText = rules[currentGameRules[1]];
+            document.getElementById("p3RuleText").innerText = rules[currentGameRules[2]];
+            if ((playerCount == 4)||(playerCount == 5)){
+                document.getElementById("p4RuleText").innerText = rules[currentGameRules[3]];
+            }
+            if(playerCount == 5){
+                document.getElementById("p5RuleText").innerText = rules[currentGameRules[4]];
+            }
+            drawTokens(true);  
+            document.getElementById("p1Rule").disabled = true;
+            document.getElementById("p2Rule").disabled = true;
+            document.getElementById("p3Rule").disabled = true;
+            document.getElementById("p4Rule").disabled = true;
+            document.getElementById("p5Rule").disabled = true;
+            document.getElementById("endGame").disabled = false;
+            document.getElementById("endTurn").disabled = true;
+            document.getElementById("btnNoToken").disabled = false;
+            document.getElementById("btnNoPlayerToken").disabled = true;
+            document.getElementById("startGame").disabled = true;
+            document.getElementById("endGameBox").close();
+            inGame = false;
+            document.getElementById("hintBoxText").innerText = "Player " + currentPlayer + " found the cryptid.";
+            document.getElementById("hintBox").showModal();
+            currentPlayer = 0;
+            document.getElementById("passTurnSearch").close();
+        }
+        else {
+    switch(activePlayer){
+        case 1:
+            var clue = rules[currentGameRules[0]];
+            break;
+            //document.getElementById("searchPlacePieceText").innerText = "The Hex selected id highlighted. Your clue is the following: \n" + clue + "\n Is this a valid space according to your clue?"
+        case 2:
+            var clue = rules[currentGameRules[1]];
+            break;
+        case 3:
+            var clue = rules[currentGameRules[2]];
+            break;
+        case 4:
+            var clue = rules[currentGameRules[3]];
+            break;
+        case 5:
+            var clue = rules[currentGameRules[4]];
+            break;
+                    
+    }
+    document.getElementById("searchPlacePieceText").innerText = "The Hex selected id highlighted. Your clue is the following: \n" + clue + "\n Is this a valid space according to your clue?"
+    document.getElementById("searchPlacePiece").showModal();
+    document.getElementById("passTurnSearch").close();
+    }
+    
+}
+}
+
+document.getElementById("searchPieceYes").onclick = function(){
+    var p = P2();
+    var tokensOnHex = elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces;
+    var passText;
+    switch(activePlayer){
+        case 1:
+            tokensOnHex.push("p1d");
+            currentTokenUpdate.push("p1d");
+            activePlayer = 2;
+            passText = "Please Pass to Player 2";
+            break;
+        case 2:
+            tokensOnHex.push("p2d");
+            currentTokenUpdate.push("p2d");
+            activePlayer = 3;
+            passText = "Please Pass to Player 3";
+            break;
+        case 3:
+            tokensOnHex.push("p3d");
+            currentTokenUpdate.push("p3d");
+            switch (playerCount){
+                case 3:
+                    activePlayer = 1;
+                    passText = "Please Pass to Player 1";
+                    break;
+                default:
+                    activePlayer = 4;
+                    passText = "Please Pass to Player 4";
+                    break;
+            }
+            break;
+        case 4:
+            tokensOnHex.push("p4d");
+            currentTokenUpdate.push("p4d");
+            switch (playerCount){
+                case 4:
+                    activePlayer = 1;
+                    passText = "Please Pass to Player 1";
+                    break;
+                default:
+                    activePlayer = 5;
+                    passText = "Please Pass to Player 5";
+                    break;
+            }
+            break;
+        case 5:
+            tokensOnHex.push("p5d");
+            currentTokenUpdate.push("p5d");
+            activePlayer = 1; 
+            passText = "Please Pass to Player 1";
+            break;
+    }
+    drawTokens(false);
+    ctxTokens.fillStyle = "#ffffff00";
+    ctxTokens.strokeStyle = "#6100fc";
+    ctxTokens.lineWidth = 4;
+    drawPoly(gridToPixel(selectedElem[0], selectedElem[1], p), createPoly(EDGES,0.8*RADIUS),"tokens");
+    
+    document.getElementById("passTurnTextSearch").innerText = passText;
+    document.getElementById("passTurnSearch").showModal();
+    document.getElementById("searchPlacePiece").close();
+}
+document.getElementById("searchPieceNo").onclick = function(){
+    var p = P2();
+    var tokensOnHex = elements.find(x => ((x.id[0] == selectedElem[0]) &&  (x.id[1] == selectedElem[1]))).pieces;
+    var passText;
+    switch(activePlayer){
+        case 1:
+            tokensOnHex.push("p1c");
+            currentTokenUpdate.push("p1c");
+            break;
+        case 2:
+            tokensOnHex.push("p2c");
+            currentTokenUpdate.push("p2c");
+            break;
+        case 3:
+            tokensOnHex.push("p3c");
+            currentTokenUpdate.push("p3c");
+            break;
+        case 4:
+            tokensOnHex.push("p4c");
+            currentTokenUpdate.push("p4c");
+            break;
+        case 5:
+            tokensOnHex.push("p5c");
+            currentTokenUpdate.push("p5c");
+            break;
+    }
+    recordTurn(currentGameRecord,1,currentTurn,currentPlayer,"search",selectedElem,currentTokenUpdate);
+    switch (currentPlayer){
+        case 1:
+            passText = "Please Pass to Player 1";
+            break;
+        case 2:
+            passText = "Please Pass to Player 2";
+            break;
+        case 3:
+            passText = "Please Pass to Player 3";
+            break;
+        case 4:
+            passText = "Please Pass to Player 4";
+            break;
+        case 5:
+            passText = "Please Pass to Player 5";
+            break;
+    }
+    drawTokens(false);
+    ctxTokens.fillStyle = "#ffffff00";
+    ctxTokens.strokeStyle = "#6100fc";
+    ctxTokens.lineWidth = 4;
+
+    drawPoly(gridToPixel(selectedElem[0], selectedElem[1], p), createPoly(EDGES,0.8*RADIUS),"tokens");
+    document.getElementById("passTurnText").innerText = passText;
+    document.getElementById("passTurn").showModal();
+    turnTaken = true;
+    cubePlaced = true;
+    console.log("Cube Placed")
+    document.getElementById("searchPlacePiece").close();
+}
